@@ -5,7 +5,7 @@
 Let's start the verification process! This may take us up to 14 days or more to verify an content creator, depending on the demand
 and the number of open issues. Check the docs first before you get started!
 
-### For contributors
+### Verifying an content creator - For contributors
 
 1. [Create a new issue](https://github.com/RecapTime/verify/issues/new) using the **Verify an content creator (for contributors)**. Fill up the required fields
 before hitting **Submit new issue** button.
@@ -13,13 +13,17 @@ before hitting **Submit new issue** button.
 3. You'll get notified after the verification process in type of an issue comment, telling you what to do next (if it's fails) or any additional details about the
 report (if it's succeeds).
 
-### For content creators
+### Verify for content creators
 
 1. [Create a new issue](https://github.com/RecapTime/verify/issues/new) using the **Verify for content creators**. Fill up the required fields
 before hitting **Submit new issue** button.
 2. Either the Community member of the StickPage community or an team member at the Pins team will triage your issue.
 3. You'll get notified after the verification process in type of an issue comment, telling you what to do next (if it's fails) or any additional details about the
 report (if it's succeeds).
+
+## API Server development
+
+The API server for the `verify.recaptime.tk` is currently WIP. Come back for updates.
 
 ## Documentation
 
