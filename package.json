@@ -3,6 +3,12 @@
   "decription": "API server source code for the verify.madebythepins.tk.",
   "engines": {
     "node": "12.x"
-   },
-   "dependencies": {}
+  },
+  "devDependencies": {
+    "prettier": "^2.1.1",
+    "vercel": "^20.0.0"
+  },
+  "scripts": {
+    "deploy": "vercel deploy"
+  }
 }
