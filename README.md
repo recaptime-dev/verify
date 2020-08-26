@@ -1,5 +1,8 @@
 # Verification process endpoint
 
+**Before you continue**: We don't promise that you'll get an verified badge for your accounts elsewhere. We just confirm the authencity of an content creator
+or publisher through this API.
+
 ## Getting started
 
 Let's start the verification process! This may take us up to 14 days or more to verify an content creator, depending on the demand
