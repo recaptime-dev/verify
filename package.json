@@ -10,5 +10,10 @@
   },
   "scripts": {
     "deploy": "vercel deploy"
+  },
+  "license": "MIT",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/RecapTime/verify"
   }
 }
