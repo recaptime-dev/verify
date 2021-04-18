@@ -108,3 +108,13 @@ dist
 
 # Lock files?
 package-lock.json
+
+# Yarn
+# We're going to do Zero-Installs!
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

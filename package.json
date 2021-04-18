@@ -1,5 +1,5 @@
 {
-  "name": "@recaptime/verify",
+  "name": "@rtapp/verify",
   "decription": "API server source code for the verify.madebythepins.tk.",
   "engines": {
     "node": "12.x"
@@ -9,11 +9,15 @@
     "vercel": "^20.0.0"
   },
   "scripts": {
-    "deploy": "vercel deploy"
+    "deploy": "vercel deploy",
+    "generate-toc:contributing": "markdown-toc -i --no-firsth1 CONTRIBUTING.md"
   },
   "license": "MIT",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/RecapTime/verify"
+    "type": "git",
+    "url": "https://github.com/RecapTime/verify"
+  },
+  "dependencies": {
+    "markdown-toc": "^1.2.0"
   }
 }
