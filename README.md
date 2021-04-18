@@ -1,34 +1,22 @@
-# Verification process endpoint
+# Verification process endpoint + Verify API
 
 **Before you continue**: We don't promise that you'll get an verified
 badge for your accounts elsewhere. We just confirm the authencity of
 an content creator or publisher through this API.
 
+This repository stores public metadata about an content creator
+or publisher as an way to verify their identity across our
+platforms and within The Pins Team's communities. It also includes
+an source code for the Verify API that anyone can use and integrate
+with other apps and services and even self-hosting is supported.
+
 ## Getting started
 
-Let's start the verification process! This may take us up to 14 days or
-more to verify an content creator, depending on the demand and the number of
-open issues. Check the docs first before you get started!
+Currently, the process is manual, but if you want to help us automate
+it, send us an merge request.
 
-### Verifying an content creator - For contributors
-
-1. [Create a new issue](https://github.com/RecapTime/verify/issues/new) using
-the **Verify an content creator (for contributors)**. Fill up the required fields
-before hitting **Submit new issue** button.
-2. Either the Community member or an team member at the Pins team
-will triage your issue.
-3. You'll get notified after the verification process in type of an issue comment, telling you what to do next (if it's fails) or any additional details about the
-report (if it's succeeds).
-
-### Verification for content creators
-
-1. [Create a new issue](https://github.com/RecapTime/verify/issues/new) using the **Verify for content creators**.
-Fill up the required fields before hitting **Submit new issue** button.
-2. Either the Community member or an team member at the Pins
-team will triage your issue.
-3. You'll get notified after the verification process in type of an issue comment,
-telling you what to do next (if it's fails) or any additional details
-about the report (if it's succeeds).
+And if you want to get started, our [contributing guide](CONTRIBUTING.md)
+and [the documentaion](#documentation) is all you need to read.
 
 ## API Server development
 
