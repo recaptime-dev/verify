@@ -5,12 +5,15 @@
     "node": "12.x"
   },
   "devDependencies": {
+    "commitizen": "^4.2.3",
+    "cz-conventional-changelog": "^3.3.0",
     "prettier": "^2.1.1",
     "vercel": "^20.0.0"
   },
   "scripts": {
     "deploy": "vercel deploy",
-    "generate-toc:contributing": "markdown-toc -i --no-firsth1 CONTRIBUTING.md"
+    "generate-toc:contributing": "markdown-toc -i --no-firsth1 CONTRIBUTING.md",
+    "commit": "cz"
   },
   "license": "MIT",
   "repository": {
@@ -19,5 +22,10 @@
   },
   "dependencies": {
     "markdown-toc": "^1.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
