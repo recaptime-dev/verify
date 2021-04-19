@@ -16,7 +16,7 @@ feel free to propose changes to this document in a pull request.
 ## Table of Contents - WIP
 
 <!-- toc -->
-- [Requirements for Commit Messsages]
+- [Requirements for Commit Messsages](#requirements-for-commit-messages)
 - [Adding new entries to the list](#adding-new-entries-to-the-list)
   - [Using the Wizard](#using-the-wizard)
 - [Glossary](#glossary)
@@ -24,6 +24,8 @@ feel free to propose changes to this document in a pull request.
 
 ## Requirements for Commit Messages
 
+* By commiting your work and sending an merge request to the
+project, your work will be licensed under
 * Your commit message should be looks like this format below.
 If you use `yarn commit`, you don't need to memorize the format
 below, because Commitizen CLI will handle it for you. You just
@@ -81,6 +83,11 @@ Signed-off-by: Gildedguy (Michael Moy) <lets-assume-its-michael-moy-here@kensore
 # patches from email)
 Co-authored-by: oxob3000 (Johannes Andersson) <lets-assume-its-boxob@kensored-domain.io>
 ```
+* Even without signing-off your commits, we recommend to PGP
+sign your commits to ensure that you REALLY commit your work
+and has the right to submit so.
+* While DCO checks may fail and block us from merging it,
+we may opt to manual merging through the command line if needed.
 
 ## Adding new entries to the list
 
@@ -141,19 +148,24 @@ socialLink:
     # remember to use open.lbry.com or odysee.com links instead of
     # lbry:// ones so people from the web can view it without the LBRY apps.
     url: https://odysee.com/@MichaelLuzzi:7
-    isMirror: true
-    isUnofficial: false
+    isMirror: true # if mirrors from other platform, set to true
+  # there are some cases where hoomans upload content to
+  # other platforms themselves, so the isMirror flag is only
+  # applied to robots.
+  - type: fediverse # if fediverse, ensure that profile links are available on atleast 2 instances of ActivityPub-supported servers
+    url: https://birdsite.slashdev.space/@benawad
+    isUnofficial: true # if fan account, set isUnofficial to true
 ```
 * `category` - TODO
-```yaml
+```yam
+# probably you checked the categories from Twitch, eh?
 # it can be one-string entry
 category: 'Arts & Animation'
 
 # or YAML-friendly lists
 category:
   - Arts & Animation
-  - Science
-  - Technology
+  - Science & Technology
 ```
 
 ### Submission Guidelines
