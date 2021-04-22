@@ -1,8 +1,9 @@
 ---
 name: Verify an content creator [CONTRIBUTORS ONLY]
-about: Submit an request to verify an creator using this form for contributors.
-title: ''
-labels: ''
+about: Submit an request to verify an creator using this form for contributors. Ensure
+  that the creator exists online with atleast one social link/website.
+title: "[@community/verify-creator] Request to verify Creator Name Here"
+labels: enhancement
 assignees: ThePinsTeam
 
 ---
