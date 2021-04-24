@@ -1,0 +1,64 @@
+# GENERAL RULES ON EDITING THIS FILE #
+# 1. Check the spec docs (docs/YAML-Reference.md) first before editing
+# 2. If unsure on what type and to avoid syntax errors, always surround
+#    vaules with double-quotes, unless stated in the reference file
+# 3. Don't forget to lint and prettify your YAML files with
+#    `./bin/prettify-yaml-file lists/creators/slug-name.yml`.
+
+# Screen name or full/legal name
+name: "Content Creator Name"
+
+# keep this unchanged or things might break
+type: "content-creator"
+
+# communities where this creator are actively participating
+# see docs/Communities.md and the Community Listing on
+# lists/communities for the full list of communities
+# also nuke these placeholders and use real data instead
+communities:
+  # if an creator is an YouTuber
+  - YouTube
+  # if an animator that has an Duelist in the roaster
+  # the duelist roaster can be found at rtapp.tk/hyunsdojo-duelist-roaster
+  - "Hyun's Dojo Community"
+  # open-source maintainers/contributors
+  # "Free, Libre, and Open Source Community" is acceptable
+  # but the bots might think it's different unless we implemented
+  # aliases stuff in the future
+  - Free and Open Source Software (FOSS) Community
+
+communityRoles:
+  - community: "Youtube"
+  # founder - The creator of an specific community OR platform
+  # maintainer - Project maintainers and forum mods OR platform mods/admins
+  # active-member - Active contributors in FLOSS community OR active users/creators in an platform
+  # casual-member - Regular users, usually don't get listed here
+  # retired - retired from participating in an community
+  # former - Past members once joined but now left
+  # banned - Banned from participation, banReason is required.
+    role: active-member
+    # this is optional
+    activeSince: 2014
+  - community: "Example Banned Community"
+    role: banned
+    banReason: This is an example ban reason.
+
+socialLinks:
+  - type: "lbry" # can be odysee too to prevent confusion
+    url: "https://odysee.com/@TheLinuxGamer:a" # avoid lbry:// links as it may require compartible clients
+  - type: twitter # for social media accts, most of social media platforms are supported
+    url: "https://twitter.com/linussextips"
+    isUnofficial: true # if fan account, set isUnofficial to true
+  - type: "discord"
+    # For discord links, only server invites are supported
+    url: "https://discord.gg/hello-world"
+
+# Blacklisting management, only set isBlocked to true if the
+# socialLinks break or has found history of violence and
+# serevre rule-breaking in the past.
+isBlocked: false
+# required if the above flag is true, otherwise you can set it
+# to null or completely commented out, reason changes can be
+# tracked on commit logs.
+blockReason: null
+
