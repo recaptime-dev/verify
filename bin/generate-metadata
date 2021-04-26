@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if [[ $# == "0" ]]; then
+   echo "Supported options: community, creator, publisher"
+fi
