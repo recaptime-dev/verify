@@ -21,7 +21,8 @@
     "url": "https://github.com/RecapTime/verify"
   },
   "dependencies": {
-    "markdown-toc": "^1.2.0"
+    "markdown-toc": "^1.2.0",
+    "yaml-schema-validator": "^1.2.2"
   },
   "config": {
     "commitizen": {
