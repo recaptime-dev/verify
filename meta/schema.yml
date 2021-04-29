@@ -1,0 +1,19 @@
+# The schema for our lists directory, using
+# yaml-schema-validator NPM package
+
+name:
+  type: string
+  required: true
+
+about:
+  type: string
+  required: true
+  length:
+    min: 5
+    max: 72
+
+isBanned:
+  type: boolean
+  required: false
+blockReason:
+  type: string
