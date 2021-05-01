@@ -1,9 +1,4 @@
-# The schema for our lists directory, using
-# yaml-schema-validator NPM package
-
-name:
-  type: string
-  required: true
+required: true
 
 about:
   type: string

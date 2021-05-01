@@ -5,6 +5,9 @@
 # 3. Don't forget to lint and prettify your YAML files with
 #    `./bin/prettify-yaml-file lists/creators/slug-name.yml`.
 
+# API version
+version: 1
+
 # Screen name or full/legal name
 name: "Content Creator Name"
 
