@@ -1,5 +1,5 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "JSON schema for YAML files in @rtapp-verify/lists",
-  "description": "JSON schema implementation of schema.json"
+  "description": "JSON schema implementation for YAML files in lists/**/ directories."
 }
