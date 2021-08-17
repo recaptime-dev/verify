@@ -1,0 +1,11 @@
+{
+    "git.autorefresh": true,
+    "git.alwaysSignOff": true,
+    "yaml.completion": true,
+    "yaml.schemas": {
+        ".vscode/schemas/custom-yaml.json": "lists/**/*.yml",
+        ".vscode/schemas/gitpod.json": ".gitpod.yml"
+    },
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 5000
+}
