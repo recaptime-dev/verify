@@ -1,0 +1,36 @@
+{
+    "settings": {
+        "git.autorefresh": true,
+        "git.alwaysSignOff": true,
+        "yaml.completion": true,
+        "yaml.schemas": {
+            ".vscode/schemas/custom-yaml.json": "lists/**/*.yml",
+            ".vscode/schemas/gitpod.json": ".gitpod.yml"
+        },
+        "files.autoSave": "afterDelay",
+        "files.autoSaveDelay": 5000
+    },
+    "folders": [
+        {
+            "name": "Repository Root",
+            "path": "./"
+        },
+        {
+            "name": "YAML Samples / Templates",
+            "path": "./lists/.templates",
+        },
+        {
+            "name": "Read The F*cking Docs/Manual",
+            "path": "./docs"
+        }
+    ],
+    "extensions": {
+        "recommendations": [
+            "eamodio.gitlens",
+            "mikestead.dotenv",
+            "davidanson.vscode-markdownlint",
+            "vscode-icons-team.vscode-icons",
+            "timonwong.shellcheck"
+        ]
+    }
+}
