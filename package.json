@@ -11,9 +11,9 @@
   },
   "scripts": {
     "generate-toc:contributing": "markdown-toc -i --no-firsth1 CONTRIBUTING.md",
-    "commit": "cz",
+    "commit": "cz --signoff",
     "docs:init": "git submodule update --init",
-    "docs:push": "git -C ${PWD}/docs push && git commit --signoff -m \"docs: Update HEAD for the docs subproject\" && git push origin"
+    "docs:push": "git -C ${PWD}/docs push && git commit --signoff -m \"docs(global): Update HEAD for the docs subproject\" && git push origin"
   },
   "license": "MIT",
   "repository": {
