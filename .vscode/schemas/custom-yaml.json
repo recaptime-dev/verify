@@ -1,5 +1,139 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "JSON schema for YAML files in @rtapp-verify/lists",
-  "description": "JSON schema implementation for YAML files in lists/**/ directories."
+  "$id": "https://recaptime.gitlab.io/verify/schema-yaml.json",
+  "title": "Verification Process Endpoint Source Files",
+  "description": "JSON schema implementation for YAML files in lists/**/ directories.",
+  "properties": {
+    "apiVersion": {
+      "type": "string",
+      "description": "API server/YAML parser version, it should match to the backend server major version we're currently at, usually prefixed with `rtapp-verify/`.\n\nWARNING: This is NOT your usual Chart.yaml or Kubernetes resource file!",
+      "default": "rtapp-verify/v1"
+    },
+    "name": {
+      "type": "string",
+      "description": "For content creators, its their screen name. For communities and publishers (book publishers, music labels, any entities that publish stuff on BEHALF of content creators), it usually their public company or community name. It possible that an community has it own legal entity in terms of finanical and copyright stuff (for example the KDE Community has KDE e.V. for finanical and copyright matters, but only the KDE Community will counted here since we don't support any other types of companies/entities other than content publishers/licensors yet)."
+    },
+    "legalName": {
+      "type": "string",
+      "description": "This is an optional field, but recommended to fill up if so. For content creators, its either their full or legal name. If their full name isn't public yet, try to use their first name from an source (YouTube Wikia, etc.) for now. For publishers, its their full company name. Communities without EITHER an legal entity OR the longer version of their community name should leave this blank.",
+      "dependencies": {
+        "name": true
+      }
+    },
+    "submissionType": {
+      "type": "string",
+      "enum": [
+        "unspecified",
+        "reserved-for-future-use",
+        "content-creator",
+        "community",
+        "entity:content-publisher"
+      ],
+      "description": "Use content-creator if the submission is for content creators, community for communities, or entity:content-publisher for Content Publisher entities. If none of above, do not submit that entry here or set it to unspecified or reserved-for-future-use.",
+      "default": "unspecified"
+    },
+    "status": {
+      "type": "string",
+      "description": "FOR MAINTAINERS ONLY, EDIT AT YOUR OWN RISK!\n\n* By default, this should be set to enabled to ensure new entries and changes to existing ones are available after deployment to staging/production.\n* When changing slugs, you should copy existing contents into its new filename and replace the contents here similiar to [this one](https://recaptime.gitlab.com/snippets/rtapp-verify-examples/redirect-parking). \n* You should only mark this as disabled if valid reasons are provided, such as social links are broken.\n* For community maintainers of an specific community and project maintainers, only set to banned if an valid reason OR an moderation log for the ban action is available.",
+      "enum": [
+        "enabled",
+        "disabled",
+        "banned",
+        "redirect-parked"
+      ],
+      "default": "enabled"
+    },
+    "socials": {
+      "type": "object",
+      "description": "Social links for an specific entry. At least one working social link (should be NOT set to null) in order to be accepted in the main RecapTime/verify GitLab SaaS repo.",
+      "additionalProperties": true,
+      "properties": {
+        "twitter": {
+          "type": "object",
+          "description": "Twitter profile metadata of specific entry. Currently one account at a type is supported right now.",
+          "required": [
+            "username"
+          ],
+          "properties": {
+            "username": {
+              "type": "string",
+              "description": "An Twitter handle of specific entry."
+            },
+            "fanAccount": {
+              "type": "boolean",
+              "description": "Whenever its an fan account or official. Set to true if it's fan account, otherwise set it to false or leave this blank. This field is optional.",
+              "default": false
+            },
+            "verified": {
+              "type": "boolean",
+              "description": "Whenever this handle has verified badge besides their name to confirm authenicity.",
+              "default": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "youtube": {
+          "type": "object",
+          "description": "YouTube channel metadata of specific entry. Currently one account at a type is supported right now.",
+          "required": [
+            "channelId",
+            "verified"
+          ],
+          "properties": {
+            "username": {
+              "type": "string",
+              "description": "An YouTube channel username of specific entry. If channelId is also in use, then this should be ignored by API consumers, including the YAML parsers."
+            },
+            "channelId": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "An YouTube channel ID of specific entry. If this entry doesn't have an YouTube channel, set it to null."
+            },
+            "fanAccount": {
+              "type": "boolean",
+              "description": "Whenever its an fan account or official. Set to true if it's fan account, otherwise set it to false or leave this blank. This field is optional.",
+              "default": false
+            },
+            "verified": {
+              "type": "boolean",
+              "description": "Whenever this handle has verified badge besides their name to confirm authenicity.",
+              "default": false
+            },
+            "partner": {
+              "type": "boolean",
+              "description": "Whenever their YouTube channel is part of YouTube Partner Program (YPP).\n\ntl;dr: Getting that verified badge doesn't mean they're part of YPP, through this is complicated process for the public to check whenever an specific channel is part of said program or not.",
+              "default": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "twitter",
+        "youtube"
+      ]
+    },
+    "annonations": {
+      "type": "object",
+      "description": "Annonations are where flags for specific entry goes here. See https://recaptime.gitlab.com/verify/docs/yaml-spec/annonations for full list of supported annonations.\n\nWARNING: This is NOT your usual Chart.yaml or Kubernetes resource file!",
+      "properties": {
+        "hydralite.io/hydracore-team": {
+          "type": "boolean",
+          "description": "Whenever this content creator/developer is part of Hydracore team at https://hydralite.io",
+          "default": false
+        }
+      }
+    }
+  },
+  "additionalProperties": true,
+  "required": [
+    "apiVersion",
+    "name",
+    "submissionType",
+    "status",
+    "socials",
+    "annonations"
+  ]
 }
