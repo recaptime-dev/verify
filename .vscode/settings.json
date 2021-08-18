@@ -4,7 +4,8 @@
     "yaml.completion": true,
     "yaml.schemas": {
         ".vscode/schemas/custom-yaml.json": "lists/**/*.yml",
-        ".vscode/schemas/gitpod.json": ".gitpod.yml"
+        ".vscode/schemas/gitpod.json": ".gitpod.yml",
+        ".vscode/schemas/gitlab-ci.json": ".gitlab-ci.yml"
     },
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 5000
