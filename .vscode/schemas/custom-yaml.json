@@ -3,9 +3,23 @@
   "$id": "https://recaptime.gitlab.io/verify/schema-yaml.json",
   "title": "Verification Process Endpoint Source Files",
   "description": "JSON schema implementation for YAML files in lists/**/ directories.",
+  "$comments": [
+    {
+      "definiton": "#/$comments",
+      "comment": "This array is where shcema maintainers like Andrei Jiroh usually take down notes for the future and to help other schema writers to make maintaining this schema easier.",
+      "signed-off-by": "Andrei Jiroh Eugenio Halili <andreijiroh@madebythepins.tk>",
+      "additionalNotes": "https://recaptime.gitlab.io/verify/docs/yaml-schema-authoring"
+    },
+    {
+      "definiton": "#/additionalProperties",
+      "comment": "We'll leave this to true in meanwhile as we need to stablize the schema and stuff towards v1.0. Once the API reached v1, we'll start to setting this to false by default in the future.",
+      "signed-off-by": "Andrei Jiroh Eugenio Halili <andreijiroh@madebythepins.tk>"
+    }
+  ],
   "properties": {
     "apiVersion": {
       "type": "string",
+      "title": "YAML Parser API version",
       "description": "API server/YAML parser version, it should match to the backend server major version we're currently at, usually prefixed with `rtapp-verify/`.\n\nWARNING: This is NOT your usual Chart.yaml or Kubernetes resource file!",
       "default": "rtapp-verify/v1"
     },
@@ -21,6 +35,7 @@
       }
     },
     "submissionType": {
+      "name": "Entry Submission Type",
       "type": "string",
       "enum": [
         "unspecified",
@@ -34,7 +49,8 @@
     },
     "status": {
       "type": "string",
-      "description": "FOR MAINTAINERS ONLY, EDIT AT YOUR OWN RISK!\n\n* By default, this should be set to enabled to ensure new entries and changes to existing ones are available after deployment to staging/production.\n* When changing slugs, you should copy existing contents into its new filename and replace the contents here similiar to [this one](https://recaptime.gitlab.com/snippets/rtapp-verify-examples/redirect-parking). \n* You should only mark this as disabled if valid reasons are provided, such as social links are broken.\n* For community maintainers of an specific community and project maintainers, only set to banned if an valid reason OR an moderation log for the ban action is available.",
+      "title": "Entry Availability Status",
+      "description": "FOR MAINTAINERS ONLY, EDIT AT YOUR OWN RISK!\n\n* By default, this should be set to enabled to ensure new entries and changes to existing ones are available after deployment to staging/production.\n* When changing slugs, you should copy existing contents into its new filename and replace the contents here similiar to [this one](https://recaptime.gitlab.io/snippets/rtapp-verify-examples/redirect-parking). \n* You should only mark this as disabled if valid reasons are provided, such as social links are broken.\n* For community maintainers of an specific community and project maintainers, only set to banned if an valid reason OR an moderation log for the ban action is available.",
       "enum": [
         "enabled",
         "disabled",
@@ -54,6 +70,7 @@
           "required": [
             "username"
           ],
+          "$comment": "While we can turn the type key of this property into an array containing 'object' and 'array', this is not yet currently supported by both the YAML parsers at server-side and our YAML linters yet.",
           "properties": {
             "username": {
               "type": "string",
@@ -75,6 +92,7 @@
         "youtube": {
           "type": "object",
           "description": "YouTube channel metadata of specific entry. Currently one account at a type is supported right now.",
+          "$comment": "While we can turn the type key of this property into an array containing 'object' and 'array', this is not yet currently supported by both the YAML parsers at server-side and our YAML linters yet.",
           "required": [
             "channelId",
             "verified"
@@ -85,11 +103,8 @@
               "description": "An YouTube channel username of specific entry. If channelId is also in use, then this should be ignored by API consumers, including the YAML parsers."
             },
             "channelId": {
-              "type": [
-                "string",
-                "null"
-              ],
-              "description": "An YouTube channel ID of specific entry. If this entry doesn't have an YouTube channel, set it to null."
+              "type": "string",
+              "description": "An YouTube channel ID of specific entry. If this entry doesn't have an YouTube channel, remove the youtube property or set this value to an blank string."
             },
             "fanAccount": {
               "type": "boolean",
@@ -108,20 +123,69 @@
             }
           },
           "additionalProperties": false
+        },
+        "odysee": {
+          "type": "object",
+          "description": "Odysee.com channel metadata for specific entry. Currently one account at a type is supported right now.",
+          "$comment": "While we can turn the type key of this property into an array containing 'object' and 'array', this is not yet currently supported by both the YAML parsers at server-side and our YAML linters yet.",
+          "properties": {
+            "username": {
+              "type": "string",
+              "description": "For example, the channel link https://odysee.com/@techlore:f3 is techlore:f3 when asked for username here. Long channel claim IDs are supported, through not required."
+            },
+            "fanAccount": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "username",
+            "fanAccount"
+          ]
         }
       },
       "required": [
-        "twitter",
-        "youtube"
+        "twitter"
       ]
     },
     "annonations": {
       "type": "object",
-      "description": "Annonations are where flags for specific entry goes here. See https://recaptime.gitlab.com/verify/docs/yaml-spec/annonations for full list of supported annonations.\n\nWARNING: This is NOT your usual Chart.yaml or Kubernetes resource file!",
+      "name": "Entry Annonations",
+      "description": "Annonations are where flags for specific entry goes here. See https://recaptime.gitlab.io/verify/docs/yaml-spec/annonations for full list of supported annonations.\n\nWARNING: This is NOT your usual Chart.yaml or Kubernetes resource file!",
+      "$comment": "By default, the schema parser on the API server backend will assume unused annonation keys are set to either false or an blank string. We cannot set to null, because this might cause chaos if we did that.",
       "properties": {
         "hydralite.io/hydracore-team": {
           "type": "boolean",
           "description": "Whenever this content creator/developer is part of Hydracore team at https://hydralite.io",
+          "default": false
+        },
+        "hydralite.io/code-contributor": {
+          "type": "boolean",
+          "description": "Whenever this developer contributed code to atleast one component for https://hydralite.io.",
+          "default": false
+        },
+        "hyunsdojo.com/community-partner": {
+          "type": "boolean",
+          "description": "Whenever this animator is an partner at Hyun's Dojo Community. See https://recaptime.gitlab.io/verify/docs/yaml-spec/annonations/hyunsdojo.com#community-partner for details.",
+          "default": false
+        },
+        "thepinsteam.dev/team-member": {
+          "description": "Whenever this content creator/developer is an team member at The Pins Team/Recap Time.",
+          "type": "boolean",
+          "default": false
+        },
+        "recaptime.app/code-contributor": {
+          "type": "boolean",
+          "description": "Whenever this developer contributed code to either the main recaptime.app's client-side or server-side code, or any of its ther repos, including rtapp-verify.",
+          "default": false
+        },
+        "gildedguy.com/production-team-member": {
+          "type": "boolean",
+          "description": "Whenever this animator is an currently an member of Michael Moy/Gildedguy's Production Team for Gildedguy Stories series",
+          "default": false
+        },
+        "rtapp-verify.flags.recaptime.dev/stick-michael": {
+          "type": "boolean",
+          "description": "An special flag maintainers at RecapTime/app GitLab project added, must be only used for lists/creators/mikedmoy.yml, otherwise chaos may happen during MR reviews. For community maintainers and Recap Time squad members, see https://recaptime.gitlab.io/internal/docs/rtapp-verify/yaml-spec/annonations/rtapp-verify.flags.recaptime.dev/stick-michael for details.",
           "default": false
         }
       }
