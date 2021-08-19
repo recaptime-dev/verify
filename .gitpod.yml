@@ -4,7 +4,8 @@ checkoutLocation: rtaapp-verify
 # if you want.
 workspaceLocation: rtapp-verify/rtapp-verify.code-workspace
 
-image: gitpod/workspace-full
+image:
+  file: .gitpod.Dockerfile
 
 tasks:
   - name: Init workspace
