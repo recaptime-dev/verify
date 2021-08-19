@@ -1,0 +1,16 @@
+stages:
+  - lint
+  - test
+  - build
+  - deploy
+
+# This custom Gitpod workspace should be available in the coming weeks.
+image: ghcr.io/madebythepinshub/gitpodified-dotfiles/main
+
+# TODO: Update this section for docs site
+pages:
+  before_script:
+    - yarn install
+    - pip3 install -r requirements.txt
+  script:
+    - yarn docs:build
