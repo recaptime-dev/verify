@@ -1,0 +1,41 @@
+# This is the Dependabot v2 configuration for the whole repo
+version: 2
+updates:
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "ci/github-actions"
+      - "dependencies"
+      - "Updated by Dependabot" # needed to automagically approve and merge
+    reviewers:
+      - ajhalili2006
+    assignees:
+      - RecapTimeBot
+  # Also our Dockerfiles should be up-to-date too
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "packages/docker-base-images"
+      - "dependencies"
+      - "Updated by Dependabot" # needed to automagically approve and merge
+    reviewers:
+      - ajhalili2006
+    assignees:
+      - RecapTimeBot
+  - package-ecosystem: "npm"
+    directory: /
+    schedule:
+      interval: "weekly"
+    labels:
+      - "packages/nodejs-npm"
+      - "dependencies"
+      - "Updated by Dependabot" # needed to automagically approve and merge
+    reviewers:
+      - ajhalili2006
+    assignees:
+      - RecapTimeBot
