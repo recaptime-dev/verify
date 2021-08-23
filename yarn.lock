@@ -218,19 +218,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rtapp/verify@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@rtapp/verify@workspace:."
-  dependencies:
-    commitizen: ^4.2.3
-    cz-conventional-changelog: ^3.3.0
-    danger: ^10.6.6
-    markdown-toc: ^1.2.0
-    prettier: ^2.1.1
-    yaml-schema-validator: ^1.2.2
-  languageName: unknown
-  linkType: soft
-
 "@types/node@npm:>= 8":
   version: 16.7.1
   resolution: "@types/node@npm:16.7.1"
@@ -2744,6 +2731,19 @@ __metadata:
   checksum: 623bd7d2e5119467ba66202d733ec3c2e2e26568074923bc0585b6b99db14f357e79bdedb63cab56cec47491c4a0da7e6021a7465ca6dc4f481d3898fdd3158c
   languageName: node
   linkType: hard
+
+"rtapp-verify@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "rtapp-verify@workspace:."
+  dependencies:
+    commitizen: ^4.2.3
+    cz-conventional-changelog: ^3.3.0
+    danger: ^10.6.6
+    markdown-toc: ^1.2.0
+    prettier: ^2.1.1
+    yaml-schema-validator: ^1.2.2
+  languageName: unknown
+  linkType: soft
 
 "run-async@npm:^2.2.0":
   version: 2.4.1

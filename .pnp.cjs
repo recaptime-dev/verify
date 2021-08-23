@@ -19,14 +19,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     ],
     "dependencyTreeRoots": [
       {
-        "name": "@rtapp/verify",
+        "name": "rtapp-verify",
         "reference": "workspace:."
       }
     ],
     "enableTopLevelFallback": true,
     "ignorePatternData": "(^(?:\\.yarn\\/sdks(?:\\/(?!\\.{1,2}(?:\\/|$))(?:(?:(?!(?:^|\\/)\\.{1,2}(?:\\/|$)).)*?)|$))$)",
     "fallbackExclusionList": [
-      ["@rtapp/verify", ["workspace:."]]
+      ["rtapp-verify", ["workspace:."]]
     ],
     "fallbackPool": [
     ],
@@ -287,21 +287,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@octokit/openapi-types", "npm:9.7.0"]
           ],
           "linkType": "HARD",
-        }]
-      ]],
-      ["@rtapp/verify", [
-        ["workspace:.", {
-          "packageLocation": "./",
-          "packageDependencies": [
-            ["@rtapp/verify", "workspace:."],
-            ["commitizen", "npm:4.2.3"],
-            ["cz-conventional-changelog", "npm:3.3.0"],
-            ["danger", "npm:10.6.6"],
-            ["markdown-toc", "npm:1.2.0"],
-            ["prettier", "npm:2.2.1"],
-            ["yaml-schema-validator", "npm:1.2.2"]
-          ],
-          "linkType": "SOFT",
         }]
       ]],
       ["@types/node", [
@@ -3186,6 +3171,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["retry", "npm:0.12.0"]
           ],
           "linkType": "HARD",
+        }]
+      ]],
+      ["rtapp-verify", [
+        ["workspace:.", {
+          "packageLocation": "./",
+          "packageDependencies": [
+            ["rtapp-verify", "workspace:."],
+            ["commitizen", "npm:4.2.3"],
+            ["cz-conventional-changelog", "npm:3.3.0"],
+            ["danger", "npm:10.6.6"],
+            ["markdown-toc", "npm:1.2.0"],
+            ["prettier", "npm:2.2.1"],
+            ["yaml-schema-validator", "npm:1.2.2"]
+          ],
+          "linkType": "SOFT",
         }]
       ]],
       ["run-async", [

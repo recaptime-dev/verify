@@ -1,9 +1,13 @@
 {
-  "name": "@rtapp/verify",
-  "decription": "API server source code for the verify.madebythepins.tk.",
+  "name": "rtapp-verify",
+  "decription": "The monorepo package for Verification Process Endpoint stuff by Recap Time squad.",
   "engines": {
     "node": "12.x"
   },
+  "bugs": {
+    "url": "https://github.com/RecapTime/verify/issues/new/choose"
+  },
+  "homepage": "https://github.com/RecapTime/verify",
   "devDependencies": {
     "commitizen": "^4.2.3",
     "cz-conventional-changelog": "^3.3.0",
@@ -13,6 +17,7 @@
   "scripts": {
     "generate-toc:contributing": "markdown-toc -i --no-firsth1 CONTRIBUTING.md",
     "commit": "cz --signoff",
+    "wizard:commit": "yarn commit",
     "docs:init": "git submodule update --init",
     "docs:push": "git -C ${PWD}/docs push && git commit --signoff -m \"docs(global): Update HEAD for the docs subproject\" && git push origin"
   },
