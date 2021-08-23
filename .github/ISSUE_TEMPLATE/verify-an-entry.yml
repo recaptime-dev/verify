@@ -2,7 +2,9 @@ name: Verify an content creator, entity or community
 description: |
   Use this issue form to submit an verification request as an GitHub issue. GitLab users must fill up the issue based on the provided AddNewEntry issue template.
 title: "Request to verify Entry Name Here"
-
+labels:
+  - "request-forms:new-entries"
+  - "enhancement"
 assignees:
   - ajhalili2006
   - ThePinsTeam
@@ -41,7 +43,10 @@ body:
     id: name
     attributes:
       label: What's the short/screen name of this entry?
-      description: For content creators, its their screen name. For communities and publishers (book publishers, music labels, any entities that publish stuff on BEHALF of content creators), it usually their public company or community name. It possible that an community has it own legal entity in terms of finanical and copyright stuff (for example the KDE Community has KDE e.V. for finanical and copyright matters, but only the KDE Community will counted here since we don't support any other types of companies/entities other than content publishers/licensors yet)
+      description: |
+        For content creators, its their screen name. For communities and publishers (book publishers, music labels, any entities that publish stuff on BEHALF of content creators), it usually their public company or community name. It possible that an community has it own legal entity in terms of finanical and copyright stuff (for example the KDE Community has KDE e.V. for finanical and copyright matters, but only the KDE Community will counted here since we don't support any other types of companies/entities other than content publishers/licensors yet)
+
+        Remember to place the placeholder `Entry Name Here` with the value of this field before you continue filling this form up.
     validations:
       required: true
   - type: input
@@ -53,9 +58,17 @@ body:
     id: submissionType
     attributes:
       label: Select an submission type for this request
+      description: |
+        **Glossary for new contributors**:
+
+        * Content Creators are music artists, OSS developers and maintainers, and simply put any public figure with politicans and criminals excluded.
+        * Content Publishing Companies are music labels, book publishing houses, any entities that publishes stuff on behalf of Content Creators except entities that handle the copyright/trademark stuff on behalf of Content Creators
+        * Communities are pretty self-explainatory, right?
+
+        If the submission type you looking isn't in the selection, choose `None of above` and our maintainers will try to pick the best submission type for you.
       options:
-        - Content Creator (music artists, OSS developers, any public figure)
-        - Content Publishing Company (music labels, book publishing houses, any entities that publishes stuff on behalf of Content Creators except entities that handle the copyright/trademark stuff on behalf of Content Creators)
+        - Content Creator
+        - Content Publishing Company
         - Communities
         - None of above
     validations:
@@ -66,9 +79,13 @@ body:
       label: Social links
       description: Social links for an specific entry. At least one working social link in order to be accepted in the main RecapTime/verify GitHub repo.
       placeholder: |
-        * https://twitter.com/username
-        * https://youtube.com/chammel/channelIdoverHereUwU
+        * https://twitter.com/username - has verified badge
+        * https://youtube.com/chammel/channelIdoverHereUwU - fan account
         * https://matrix.to/#/#twim:matrix.org
+        * https://lttstore.com - merch site
+        * https://discord.gg/gildedguy - just an regular Community server with Booster Level 3
+    validations:
+      required: true
   ## Annonations - START ##
   - type: markdown
     attributes:
@@ -81,9 +98,11 @@ body:
     attributes:
       label: Open-source Maintainership Status
       description: |
+        **ONLY APPLIES TO CONTENT CREATORS, SKIP IF ITS AN COMPANY OF ANY SORT OR COMMUNITY!**
+
         Check any boxes where this entry is actively maintains in the following open-source projects. Any past projects where this developer maintains should be noted in the comments field below.
       
-        Can't found it? Pick `Other open source projects` and provide us the open-source project name, link to website/repository in the comments section of this form for details.
+        Can't found it? Pick `Other open source projects` and provide us the open-source project name, link to website/repository in the comments section of this form for details. If this entry doesn't maintain any OSS projects, please do not tick anything.
       # Alphabettical order, please!
       options:
         # debian.org/active-distro-maintainer
@@ -95,7 +114,6 @@ body:
         # vscode.dev/active-maintainer
         - label: VS Code (<https://github.com/microsoft/vscode>)
         - label: Other open source projects (list down in the comments field below)
-        - label: "Doesn't maintain any OSS project"
   ## Annonations - START ##
   - type: textarea
     id: comments
@@ -103,8 +121,7 @@ body:
       label: Any comments our maintainers want to know?
       description: Please only note any extra information you might want to submit for this entry. Check the docs on what to place in this field.
       value: |
-        <!-- Please remove everything by hitting Ctrl+A and then Backspace while the cursor is within
-        this textarea." -->
+        <!-- Please remove everything by hitting Ctrl+A and then Backspace while the cursor is within this textarea. -->
         #### OSS Projects with Active Maintainership Status
 
         * Project name - <https://example.org>
