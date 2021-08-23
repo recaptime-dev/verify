@@ -1,0 +1,21 @@
+apiVersion: rtapp-verify/v1
+
+name: Andrei Jiroh
+legalName: Andrei Jiroh Eugenio Halili
+
+submissionType: "content-creator"
+status: enabled
+
+socials:
+  twitter:
+    # Even that's Andrei Jiroh's personal account, there's no verified badge yet btw.
+    username: Kuys_Potpot
+    fanAccount: false
+    verified: false
+  
+
+annonations:
+  # Since Andrei Jiroh is an team member at The Pins Team and also project lead at Recap Time,
+  # these annonations should set to true.
+  thepinsteam.dev/team-member: true
+  recaptime.app/code-contributor: true
