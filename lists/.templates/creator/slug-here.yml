@@ -62,9 +62,10 @@ socials:
     # Generally speaking any service that supports ActivityPub spec should goes here. Please see the docs at https://recaptime.gitlab.com/verify/docs/yaml-spec/socials/fediverse for details.
   # This is also same as Matrix, but instead of accounts (to not distrub their inboxes), we use Matrix rooms here.
   matrix:
+    # in each object, channel and homeserver fields are required.
     - channel: placeholder-channel
       homeserver: matrix.org # Only channels in an homeserver where federation is enabled will be accepted.
-      inviteOnly: false # Only set to true if it's private
+      inviteOnly: false # Only set to true if it's private, by default this is set to false.
     - channel: hot-topics
       homeserver: techlore.net
       inviteOnly: true
@@ -80,10 +81,16 @@ socials:
 
 # Annonations, Kubernetes resource file/Helm Charts style
 # You don't need f**king Kubernetes to understand this. We documented to for you, but please DO NOT TURN THIS FILE INTO Chart.yaml as $#!t may happen if you do that.
+# Any unlisted annonations will be set to false or blank string by default by the parsers.
 annonations:
   # Links to support an creator, check https://recaptime.gitlab.com/verify/docs/yaml-spec/annonations/supportcreators.rtapp.io for details on supported Support-A-Creator links
   supportcreators.rtapp.io/tip-cup: https://paypal.me/mytipcuphere
   supportcreators.rtapp.io/patreon: https://patreon.com/creator
   supportcreators.rtapp.io/liberapay: https://liberapay.com/creator
+
+  # Whenever an specific content creator/dev is an maintainer or contributor at specific community/project, usually in boolean. Default is false.
+  hydralite.io/hydracore-team: false
+  hydralite.io/code-contributor: false
+  hyunsdojo.com/community-partner: false
 
   # See https://recaptime.gitlab.com/verify/docs/yaml-spec/annonations for full list of supported anonations.
