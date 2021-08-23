@@ -1,0 +1,37 @@
+name: Issue Labels Manager
+
+on:
+  push:
+    paths:
+      - ".github/labels.yml"
+      - ".github/workflows/update-gh-labels.yml"
+  workflow_dispatch:
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Run Labeler
+        if: success()
+        uses: crazy-max/ghaction-github-labeler@v3
+        with:
+          github-token: ${{ secrets.GH_SERVICE_ACCOUNT_API_KEY }}
+          yaml-file: .github/labels.yml
+          skip-delete: false
+          dry-run: false
+          # These labels included in your default labels settings are excluded
+          # you need to manually add them to .github/labels.yml and remove the entries here
+          exclude: |
+            documentation
+            help wanted
+            wontfix
+            bug
+            invalid
+            question
+            enhancement
+            duplicate
+            good first issue
