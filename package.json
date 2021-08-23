@@ -7,6 +7,7 @@
   "devDependencies": {
     "commitizen": "^4.2.3",
     "cz-conventional-changelog": "^3.3.0",
+    "danger": "^10.6.6",
     "prettier": "^2.1.1"
   },
   "scripts": {
