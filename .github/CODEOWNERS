@@ -1,0 +1,17 @@
+# Protect .github directory by default
+.github/ @RecapTime/squad
+
+# Ensure changes to our custom schema, workspace settings and even the custom Code Workspace
+# are reviewed by hoomans
+.vscode/schemas/custom-yaml.json @RecapTime/squad
+.vscode/*.json @RecapTime/squad
+rtapp-verify.code-workspace @RecapTime/squad
+
+# Templates chaos and Entry Manifest files
+lists/.templates/ @RecapTime/squad
+lists/creators/ @RecapTime/squad
+lists/publishers/ @RecapTime/squad
+lists/communities/ @RecapTime/squad
+
+# Dangerfile
+dangerfile.js @RecapTime/squad
