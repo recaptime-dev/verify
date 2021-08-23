@@ -1,5 +1,6 @@
 {
     "first-line-heading": false,
     "ul-indent": false,
-    "line-length": false
+    "line-length": false,
+    "ul-style": false
 }
