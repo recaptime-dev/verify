@@ -2,20 +2,19 @@ name: Issue Labels Manager
 
 on:
   push:
+    branches: [ main ]
     paths:
       - ".github/labels.yml"
       - ".github/workflows/update-gh-labels.yml"
   workflow_dispatch:
 
 jobs:
-  labeler:
+  update-issue-labels:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v2.3.4
-      -
-        name: Run Labeler
+      - name: Run Labeler
         if: success()
         uses: crazy-max/ghaction-github-labeler@v3
         with:
