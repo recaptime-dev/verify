@@ -52,7 +52,7 @@ jobs:
         git commit -m "chore(dependabot): fix broken Yarn lockfile" --signoff
         git push
   fix-on-command-usage:
-    if: github.event.comment.body == '@RecapTimeBot fix borked lockfile' && github.event.pull_request.url == ""
+    if: github.event.comment.body == '@RecapTimeBot fix borked lockfile' && github.event.pull_request.url == ''
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
