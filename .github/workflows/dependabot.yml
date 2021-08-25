@@ -1,0 +1,51 @@
+# based on https://github.com/ylemkimon/berry-dependabot-test/blob/master/.github/workflows/dependabot.yml,
+# along with some fixes to we can fix this via an PR comment command.
+name: Fix borked Yarn lockfiles
+
+on:
+  push:
+    branches: [ dependabot/npm_and_yarn/** ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+        persist-credentials: false
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - name: Autofix lockfile
+      run: |
+        # change directory
+        cd .`git log -1 --pretty=%s | awk '{ print $8 }'`
+        # restore yarn.lock from the previous commit
+        git checkout HEAD^ -- yarn.lock
+        # install yarn-plugin-deduplicate
+        yarn plugin import https://raw.githubusercontent.com/eps1lon/yarn-plugin-deduplicate/latest/bin/%40yarnpkg/plugin-deduplicate.js
+        # if package.json was not updated, upgrade the dependency
+        git diff --name-only HEAD^ HEAD | grep -q 'package.json' || yarn up `git log -1 --pretty=%s | awk '{ print $2 }'`
+        # restore package.json from the last commit
+        git checkout HEAD -- package.json
+        yarn install
+        # deduplicate lockfile
+        yarn deduplicate
+    - name: Config Git
+      run: |
+        # use personal access token to allow triggering new workflow
+        BASIC_AUTH=$(echo -n "x-access-token:${{ secrets.GH_SERVICE_ACCOUNT_API_KEY }}" | base64)
+        echo "::add-mask::$BASIC_AUTH"
+        git config --global user.name 'Recap Time Bot'
+        git config --global user.email 'recaptime.madebythepins@gmail.com'
+        git config --local http.$GITHUB_SERVER_URL/.extraheader "AUTHORIZATION: basic $BASIC_AUTH"
+    - name: Commit changes
+      run: |
+        cd .`git log -1 --pretty=%s | awk '{ print $8 }'`
+        git add yarn.lock .yarn/cache .pnp.*
+        git commit -m "Dependabot autofix [skip netlify]"
+        git push
