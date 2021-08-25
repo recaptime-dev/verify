@@ -5,9 +5,11 @@ name: Fix borked Yarn lockfiles
 on:
   push:
     branches: [ dependabot/npm_and_yarn/** ]
+  issue_comment:
+    types: [created]
 
 jobs:
-  build:
+  fix-on-push:
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
 
@@ -19,7 +21,7 @@ jobs:
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
       with:
-        node-version: '12'
+        node-version: '14'
     - name: Autofix lockfile
       run: |
         # change directory
@@ -47,5 +49,45 @@ jobs:
       run: |
         cd .`git log -1 --pretty=%s | awk '{ print $8 }'`
         git add yarn.lock .yarn/cache .pnp.*
-        git commit -m "Dependabot autofix [skip netlify]"
+        git commit -m "chore(dependabot): fix broken Yarn lockfile" --signoff
         git push
+  fix-on-command-usage:
+    if: github.event.comment.body == '@RecapTimeBot fix borked lockfile' && github.event.pull_request.url == ""
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Checkout to branch
+        run: gh pr checkout ${{github.event.number}}
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - name: Autofix lockfile
+        run: |
+         # change directory
+         cd .`git log -1 --pretty=%s | awk '{ print $8 }'`
+         # restore yarn.lock from the previous commit
+         git checkout HEAD^ -- yarn.lock
+         # install yarn-plugin-deduplicate
+         yarn plugin import https://raw.githubusercontent.com/eps1lon/yarn-plugin-deduplicate/latest/bin/%40yarnpkg/plugin-deduplicate.js
+         # if package.json was not updated, upgrade the dependency
+         git diff --name-only HEAD^ HEAD | grep -q 'package.json' || yarn up `git log -1 --pretty=%s | awk '{ print $2 }'`
+         # restore package.json from the last commit
+         git checkout HEAD -- package.json
+         yarn install
+         # deduplicate lockfile
+         yarn deduplicate
+      - name: Config Git
+        run: |
+          # use personal access token to allow triggering new workflow
+          BASIC_AUTH=$(echo -n "x-access-token:${{ secrets.GH_SERVICE_ACCOUNT_API_KEY }}" | base64)
+          echo "::add-mask::$BASIC_AUTH"
+          git config --global user.name 'Recap Time Bot'
+          git config --global user.email 'recaptime.madebythepins@gmail.com'
+          git config --local http.$GITHUB_SERVER_URL/.extraheader "AUTHORIZATION: basic $BASIC_AUTH"
+      - name: Commit changes
+        run: |
+          cd .`git log -1 --pretty=%s | awk '{ print $8 }'`
+          git add yarn.lock .yarn/cache .pnp.*
+          git commit -m "chore(dependabot): fix broken Yarn lockfile" --signoff
+          git push
