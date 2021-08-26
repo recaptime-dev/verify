@@ -9,16 +9,18 @@ on:
     types: [created]
 
 jobs:
+  # We cannot push stuff on pull_request, especially GitHub just think PRs from Dependabot treats the same as PRs from forks, which we cannot use our PAT.
   fix-on-push:
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'
+    if: github.actor == 'dependabot[bot]' && github.event_name == 'push'
 
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 2
         persist-credentials: false
-    - name: Use Node.js 12.x
+    # TODO: Upgrade to 16.x when it reaches the Active LTS status.
+    - name: Use Node.js 14.x
       uses: actions/setup-node@v1
       with:
         node-version: '14'
@@ -39,7 +41,7 @@ jobs:
         yarn deduplicate
     - name: Config Git
       run: |
-        # use personal access token to allow triggering new workflow
+        # We use our own PAT for this, if you gonna use this, make sure to use the same secret name.
         BASIC_AUTH=$(echo -n "x-access-token:${{ secrets.GH_SERVICE_ACCOUNT_API_KEY }}" | base64)
         echo "::add-mask::$BASIC_AUTH"
         git config --global user.name 'Recap Time Bot'
@@ -49,16 +51,18 @@ jobs:
       run: |
         cd .`git log -1 --pretty=%s | awk '{ print $8 }'`
         git add yarn.lock .yarn/cache .pnp.*
-        git commit -m "chore(dependabot): fix broken Yarn lockfile" --signoff
+        git commit -m "chore(dependabot): fix broken Yarn lockfile" -m "Related-Issue: https://github.com/RecapTime/verify/issues/11" -m "Related-Issue: https://github.com/dependabot/dependabot-core/issues/1297" --signoff
         git push
   fix-on-command-usage:
-    if: github.event.comment.body == '@RecapTimeBot fix borked lockfile' && github.event.pull_request.url == ''
+    # TODO: Edit the line below via Gitpod. You probably check the GitHub Docs for help.
+    if: ${{ github.event.comment.body == '@RecapTimeBot fix borked lockfile' && github.event.pull_request.html_url != '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Checkout to branch
         run: gh pr checkout ${{github.event.number}}
-      - name: Use Node.js 12.x
+      # TODO: Upgrade to 16.x when it reaches the Active LTS status.
+      - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
           node-version: '14'
@@ -79,7 +83,7 @@ jobs:
          yarn deduplicate
       - name: Config Git
         run: |
-          # use personal access token to allow triggering new workflow
+          # We use our own PAT for this, if you gonna use this, make sure to use the same secret name.
           BASIC_AUTH=$(echo -n "x-access-token:${{ secrets.GH_SERVICE_ACCOUNT_API_KEY }}" | base64)
           echo "::add-mask::$BASIC_AUTH"
           git config --global user.name 'Recap Time Bot'
@@ -89,5 +93,6 @@ jobs:
         run: |
           cd .`git log -1 --pretty=%s | awk '{ print $8 }'`
           git add yarn.lock .yarn/cache .pnp.*
-          git commit -m "chore(dependabot): fix broken Yarn lockfile" --signoff
+          git commit -m "chore(dependabot): fix broken Yarn lockfile" -m "Related-Issue: https://github.com/RecapTime/verify/issues/11" -m "Related-Issue: https://github.com/dependabot/dependabot-core/issues/1297" --signoff
           git push
+      # TODO: Notify the user who trigger the command ONLY if fails.
