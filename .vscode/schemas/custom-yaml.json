@@ -8,7 +8,7 @@
       "definiton": "#/$comments",
       "comment": "This array is where shcema maintainers like Andrei Jiroh usually take down notes for the future and to help other schema writers to make maintaining this schema easier.",
       "signed-off-by": "Andrei Jiroh Eugenio Halili <andreijiroh@madebythepins.tk>",
-      "additionalNotes": "https://recaptime.gitlab.io/verify/docs/yaml-schema-authoring"
+      "additionalNotes": "https://recaptime.gitlab.io/verify/docs/contributing/yaml-schema-authoring"
     },
     {
       "definiton": "#/additionalProperties",
@@ -65,6 +65,41 @@
         "redirect-parked"
       ],
       "default": "enabled"
+    },
+    "banInfo": {
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "banned"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "reason",
+              "modlog"
+            ],
+            "properties": {
+              "reason": {
+                "type": "string",
+                "description": "An short reason why this entry has been blocklisted from the index.",
+                "minLength": 5
+              },
+              "modlog": {
+                "type": "string",
+                "description": "Link to moderation log, either the rendered version or the source Markdown one.",
+                "minLength": 5,
+                "examples": [
+                  "https://recaptime.github.io/advisories/modlog/rtapp-verify/BURNINATION-YYYY-abcdef123456"
+                ]
+              }
+            }
+          }
+        }
+      ]
     },
     "socials": {
       "type": "object",
