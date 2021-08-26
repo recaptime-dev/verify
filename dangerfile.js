@@ -66,7 +66,7 @@ if (pr.body.length < 30) {
 }
 
 // Don't have folks setting the package json version
-const apiServerPkgDiff = await danger.git.JSONDiffForFile("package.json")
+const apiServerPkgDiff = danger.git.JSONDiffForFile("package.json")
 const releaseDispatchGH = danger.github.issue.labels.includes('release-dispatcher')
 if (apiServerPkgDiff.version && releaseDispatchGH != true && pr.user.login !== projectLead) {
   fail("For contributors, please don't make package version changes.\n\nIf you're an team member at The Pins Team (we consider Recap Time squad members as part of The Pins Team, through the `@RecapTime/squad` team membership) or an community maintainer here, ping Andrei Jiroh so he can help you cut an new release for the API server. If he's not available, add `release-dispatcher` label to dismiss this error and check the Release workflow in maintainer docs. Make sure to coordinate with your fellow maintainers as you ship new releases.")
