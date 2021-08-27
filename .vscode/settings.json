@@ -1,5 +1,7 @@
 {
     "git.autorefresh": true,
+    "git.autofetch": "all",
+    "git.autofetchPeriod": 900,
     "git.alwaysSignOff": true,
     "yaml.completion": true,
     "yaml.schemas": {
