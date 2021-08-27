@@ -10,7 +10,7 @@
   "homepage": "https://github.com/RecapTime/verify",
   "devDependencies": {
     "@yarnpkg/sdks": "^2.4.2-rc.1",
-    "commitizen": "^4.2.3",
+    "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "danger": "^10.6.6",
     "prettier": "^2.1.1"
