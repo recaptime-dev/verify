@@ -1,0 +1,15 @@
+# Don't run on node_modules, even we're all PnP-ified the monorepo.
+**/node_modules
+
+# God, why Prettier warns me about .pnp.cjs and .yarn/releases/**?
+.yarn/releases/**
+.pnp.*
+# Also we need to shut @TheRileys up on Yarn plugins and SDKs.
+.yarn/plugins/**
+.yarn/sdks/**
+
+# TODO: Deprecate the wiki and delete this submodule as per https://github.com/RecapTime/verify/issues/6
+docs/
+
+# I forgot nuking vercel.json, so YOLO it.
+vercel.json
