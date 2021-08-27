@@ -26,17 +26,12 @@
     "name": {
       "type": "string",
       "description": "For content creators, its their screen name. For communities and publishers (book publishers, music labels, any entities that publish stuff on BEHALF of content creators), it usually their public company or community name. It possible that an community has it own legal entity in terms of finanical and copyright stuff (for example the KDE Community has KDE e.V. for finanical and copyright matters, but only the KDE Community will counted here since we don't support any other types of companies/entities other than content publishers/licensors yet).",
-      "examples": [
-        "Example Screen Name",
-        "Example Community Name"
-      ]
+      "examples": ["Example Screen Name", "Example Community Name"]
     },
     "legalName": {
       "type": "string",
       "description": "This is an optional field, but recommended to fill up if so. For content creators, its either their full or legal name. If their full name isn't public yet, try to use their first name from an source (YouTube Wikia, etc.) for now. For publishers, its their full company name. Communities without EITHER an legal entity OR the longer version of their community name should leave this blank.",
-      "examples": [
-        "Example Legal Company Name, LLC"
-      ],
+      "examples": ["Example Legal Company Name, LLC"],
       "dependencies": {
         "name": true
       }
@@ -58,12 +53,7 @@
       "type": "string",
       "title": "Entry Availability Status",
       "description": "FOR MAINTAINERS ONLY, EDIT AT YOUR OWN RISK!\n\n* By default, this should be set to enabled to ensure new entries and changes to existing ones are available after deployment to staging/production.\n* When changing slugs, you should copy existing contents into its new filename and replace the contents here similiar to [this one](https://recaptime.gitlab.io/snippets/rtapp-verify-examples/redirect-parking). \n* You should only mark this as disabled if valid reasons are provided, such as social links are broken.\n* For community maintainers of an specific community and project maintainers, only set to banned if an valid reason OR an moderation log for the ban action is available.",
-      "enum": [
-        "enabled",
-        "disabled",
-        "banned",
-        "redirect-parked"
-      ],
+      "enum": ["enabled", "disabled", "banned", "redirect-parked"],
       "default": "enabled"
     },
     "banInfo": {
@@ -78,10 +68,7 @@
             }
           },
           "then": {
-            "required": [
-              "reason",
-              "modlog"
-            ],
+            "required": ["reason", "modlog"],
             "properties": {
               "reason": {
                 "type": "string",
@@ -109,9 +96,7 @@
         "twitter": {
           "type": "object",
           "description": "Twitter profile metadata of specific entry. Currently one account at a type is supported right now.",
-          "required": [
-            "username"
-          ],
+          "required": ["username"],
           "$comment": "While we can turn the type key of this property into an array containing 'object' and 'array', this is not yet currently supported by both the YAML parsers at server-side and our YAML linters yet.",
           "properties": {
             "username": {
@@ -135,10 +120,7 @@
           "type": "object",
           "description": "YouTube channel metadata of specific entry. Currently one account at a type is supported right now.",
           "$comment": "While we can turn the type key of this property into an array containing 'object' and 'array', this is not yet currently supported by both the YAML parsers at server-side and our YAML linters yet.",
-          "required": [
-            "channelId",
-            "verified"
-          ],
+          "required": ["channelId", "verified"],
           "properties": {
             "username": {
               "type": "string",
@@ -179,10 +161,7 @@
               "type": "boolean"
             }
           },
-          "required": [
-            "username",
-            "fanAccount"
-          ]
+          "required": ["username", "fanAccount"]
         },
         "matrix": {
           "type": "array",
@@ -217,9 +196,7 @@
           }
         }
       },
-      "required": [
-        "twitter"
-      ]
+      "required": ["twitter"]
     },
     "annonations": {
       "type": "object",

@@ -1,28 +1,31 @@
 {
-    "git.autorefresh": true,
-    "git.autofetch": "all",
-    "git.autofetchPeriod": 900,
-    "git.alwaysSignOff": true,
-    "yaml.completion": true,
-    "yaml.schemas": {
-        ".vscode/schemas/custom-yaml.json": "lists/**/*.yml",
-        ".vscode/schemas/gitpod.json": ".gitpod.yml",
-        ".vscode/schemas/gitlab-ci.json": ".gitlab-ci.yml"
-    },
-    "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 5000,
-    "yaml.schemaStore.enable": true,
-    "[yaml]": {
-        "editor.insertSpaces": true,
-        "editor.tabSize": 2,
-        "editor.autoIndent": "advanced",
-        "gitlens.codeLens.scopes": [
-            "document"
-        ],
-        "editor.quickSuggestions": {
-            "other": true,
-            "comments": false,
-            "strings": true
-        }
+  "git.autorefresh": true,
+  "git.autofetch": "all",
+  "git.autofetchPeriod": 900,
+  "git.alwaysSignOff": true,
+  "yaml.completion": true,
+  "yaml.schemas": {
+    ".vscode/schemas/custom-yaml.json": "lists/**/*.yml",
+    ".vscode/schemas/gitpod.json": ".gitpod.yml",
+    ".vscode/schemas/gitlab-ci.json": ".gitlab-ci.yml"
+  },
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 5000,
+  "yaml.schemaStore.enable": true,
+  "[yaml]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "gitlens.codeLens.scopes": ["document"],
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
     }
+  },
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.js"
 }

@@ -25,7 +25,12 @@
                 "comments": false,
                 "strings": true
             }
-        }
+        },
+        "search.exclude": {
+          "**/.yarn": true,
+          "**/.pnp.*": true
+        },
+        "prettier.prettierPath": ".yarn/sdks/prettier/index.js"
     },
     "folders": [
         {
@@ -47,7 +52,9 @@
             "mikestead.dotenv",
             "davidanson.vscode-markdownlint",
             "vscode-icons-team.vscode-icons",
-            "timonwong.shellcheck"
+            "timonwong.shellcheck",
+            "arcanis.vscode-zipfs",
+            "esbenp.prettier-vscode"
         ]
     }
 }
