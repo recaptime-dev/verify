@@ -1,13 +1,11 @@
 const { danger, fail, markdown, warn, message } = require("danger");
 
 /*
- * TODO: Also add GitLab stuff for Danger JS, once this repo is also on GitLab,
- * and also the CI/CD setup is completed.
+ * GitLab stuff are on ./gitlab.js file
  */
 
 // some code includes stuff from https://www.typescriptlang.org/play?ssl=29&ssc=2&pln=26&pc=1#code/PTAEBUAsEsGdTqAhqADgGyQTwOYCcB7AVwDsATUAd0gFM8bQtjQBjJE0GgDwwPtAAutUABF2OOqABSAZQBQIUAEEACgElk5ULEhJ+LAmQawkAWww1YAOlAB5EiwZCG9CumglLoAEY10BSlAAIjJxOiCFMHYKINQkISDkfhwCT0FaDiYiVnZtAT0BQQJOHn9+SjxoAQ8cSNA8InQvADM+UTC8Zugm6zk5aHM+QoBvUFCSCTwAGlBmpG6Z0z0AazIAkhnKPQ3QU0sTCVAAX1nCU2DxyYiB1CHQACpkeDihU4Jz2PjICLrVDXpmnQaA4aAAuUCQAQCVCwUEgS50KywLCwAQ0UywYAAK0xAKBIKskNM6D6BhIqLQeFAAF4xh0rDgqpAiN4rKg8H1FAAxDwUYiFaDNbTvBhxPDVFiNPSzbpeXQANwYLF0ExoFA86UQKgASqA5GSKWtJXsSPlqqkaXTVXgGVUrF0mgBZeLKgAUQXu92A9yspjIQQAlPrUhTlWF-DhLQibYyBPbZc6BG6ggBhAASSgAcgBxACiABlbNnff6gwbCnEWMskBIpLALbTo7a4w6aInk5XqxIrDjUoHg+TCv4q62o-TY-GnS7IO6sNsrMPlkEZp8qzWaABaRc9+skft1bWNSycsBQdjLWYEdDLeCtKlLZY1MYEFisFUSWD9IWuo1EE1m6BUisNUqjVANQGGORQGg3Z9nXd0zxIG9QA3UAAHUGFBWgCnBYgqQAbV-f89GgdhYAAXVdSFoThYBKHoqwKlA5wjWsPgcGAAMAEJ+yOE9QG1dFeTQGgCAsIpQCIVBQjRUBF1bT9BVAV1O3XOsgNMQxBWgNVQAAMj00AuPk2VfS0rowIgqCYK2PASAQmB4B1XZzJ0ihVO7Xsdm8IhChIAhCmcOSX2WVteP4tCMnSIEkgYJBUFQDcw1VeBogQQoiHgfzChQZyljwZZdKQeABEqeVSPQGZuFQGgWAEOpnH4ARil8UB0yzPNC2zN8wl6ctBDKirnNpdkrG8QwsCsDwWHQIgjFgd1SugcqkHQfslNdLjkokCNgLIUCKAMoylpW9AdXAyDoLmbp3UzYp2pzAsi2QMgjDIKxwrqO7QGcxBmuKWAlnQdAJNsvB2BytA9BrcHUEgUA2gEShigIIVYD-fKsC-ZTRvGshJqaCZXmpEnQAABgu6zrvQd0VCaYq4te5AxksFhKlQc0OGaxg8J+7UPqDPjFCUdAthRThySIco4tgWBoBwDh6z2VInGKXLtRmJSqlS7GVJtYq5YVmgGBJ2kSEadBKeg-q9iEQxLVG6oBCaKaHFm+b3TQtQVEDUAAH4qG2UBwWp6zbcgQxafp2AZcNxWRRViS9jwQ4hC1DXND5DnAJIVb0CwBA3bm0VRPE6gAYjxoKHocqaEoAW5D4upc0lprdEhzBfBB3R4F8YFtBoeqNqbWNmVZOB0ZoBckC76xCZwYnSYpqzoNs+ygigdPny8bKISQRVNALzu-GscKgA
-const pr = danger.github.pr || null;
-const mr = danger.gitlab.mr || null; // IDK if that works, but lemme check da docs
+const pr = danger.github.pr;
 
 // https://danger.systems/js/tutorials/node-library.html#keeping-on-top-of-your-library, lodash stuff are probably included in danger npm
 // package, right?
@@ -62,41 +60,38 @@ if (YarnManifest.modified && !lockfileYarnpkg.modified) {
   );
 }
 
-if (pr !== null) {
-  // Ensure there's atleast one assignee in each PR
-  // In GitLab, WIP is being deprecated in favor of Draft as prefix.
-  if (pr.assignee === null) {
-    const method = pr.title.includes("WIP:") ? warn : fail;
-    method(
-      "Please assign someone to merge this PR, and optionally include people who should review."
-    );
-  }
+// Ensure there's atleast one assignee in each PR
+// In GitLab, WIP is being deprecated in favor of Draft as prefix.
+if (pr.assignee === null) {
+  const method = pr.title.includes("WIP:") ? warn : fail;
+  method(
+    "Please assign someone to merge this PR, and optionally include people who should review."
+  );
+}
 
-  // No PR is too small to include a description of why you made a change
-  if (pr.body.length < 30) {
-    warn(
-      "We believe no pull/merge request is too small to include a description of changes you made, but please add an few words to describe your PR in 30 or more characters."
-    );
-  } else if (pr.body.length === 0) {
-    fail(
-      "We believe no pull/merge request is too small to include a description of changes you made, please add a description to your PR."
-    );
-  } else {
-    message(
-      "Nice! Just make sure the PR body doesn't contain nonsense stuff that we think it's unimportant to reach 30+ characters."
-    );
-  }
+// No PR is too small to include a description of why you made a change
+if (pr.body.length < 30) {
+  warn(
+    "We believe no pull/merge request is too small to include a description of changes you made, but please add an few words to describe your PR in 30 or more characters."
+  );
+} else if (pr.body.length === 0) {
+  fail(
+    "We believe no pull/merge request is too small to include a description of changes you made, please add a description to your PR."
+  );
+} else {
+  message(
+    "Nice! Just make sure the PR body doesn't contain nonsense stuff that we think it's unimportant to reach 30+ characters."
+  );
 }
 
 // Don't have folks setting the package json version
 const apiServerPkgDiff = danger.git.JSONDiffForFile("api/package.json");
-const releaseDispatchGH = danger.github.issue.labels.includes(
+const releaseDispatch = danger.github.issue.labels.includes(
   "release-dispatcher"
 );
 if (
-  pr !== null &&
   apiServerPkgDiff.version &&
-  releaseDispatchGH !== true &&
+  releaseDispatch !== true &&
   pr.user.login !== projectLead
 ) {
   fail(
