@@ -1,4 +1,4 @@
 FROM gitpod/workspace-full
 
-# Install Python stuff globally in user-wide
-RUN pip3 install -U mkdocs mkdocs-material
+# Install ESLint and Prettier ahead of time, also don't forget Danger JS
+RUN npm i -g eslint prettier danger
