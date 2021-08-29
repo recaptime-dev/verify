@@ -16,6 +16,6 @@ jobs:
       - name: Install Node.js packages
         run: yarn install
       - name: Run Danger JS
-        run: yarn danger ci
+        run: yarn ci:dangerjs-github
         env:
           DANGER_GITHUB_API_TOKEN: ${{secrets.GH_SERVICE_ACCOUNT_API_KEY}}

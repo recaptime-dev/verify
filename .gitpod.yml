@@ -1,7 +1,7 @@
 # We're gonna customize the checkout location a bit.
 checkoutLocation: rtaapp-verify
-# Also use our custom Code Workspace for Gitpod. Feel free to use it in VS Code/Theia
-# if you want.
+# Also use our custom Code Workspace for Gitpod. Feel free to use it in VS Code, Theia
+# or even code-server if you want.
 workspaceLocation: rtapp-verify/rtapp-verify.code-workspace
 
 image:
@@ -19,3 +19,5 @@ vscode:
     - davidanson.vscode-markdownlint
     - vscode-icons-team.vscode-icons
     - timonwong.shellcheck
+    - arcanis.vscode-zipfs
+    - esbenp.prettier-vscode

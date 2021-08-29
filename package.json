@@ -20,7 +20,12 @@
     "commit": "cz --signoff",
     "wizard:commit": "yarn commit",
     "docs:init": "git submodule update --init",
-    "docs:push": "git -C ${PWD}/docs push && git commit --signoff -m \"docs(global): Update HEAD for the docs subproject\" && git push origin"
+    "docs:push": "git -C ${PWD}/docs push && git commit --signoff -m \"docs(global): Update HEAD for the docs subproject\" && git push origin",
+    "ci:dangerjs-github": "danger ci --use-github-checks --dangerfile ./danger/github.js --verbose",
+    "ci:dangerjs-gitlab": "danger ci --dangerfile ./danger/gitlab.js --verbose",
+    "dangerfile:prettify": "prettier --write ./danger/**",
+    "dangerfile:check": "prettier --check ./danger/**",
+    "dangerfile:lint": "echo \"TODO: Add ESLint stuff\" && exit 1"
   },
   "license": "MIT",
   "repository": {
