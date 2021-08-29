@@ -1,5 +1,6 @@
 const { danger, fail, markdown, warn, message } = require("danger");
 const mr = danger.gitlab.mr;
+const author = mr.author.username
 
 // https://danger.systems/js/tutorials/node-library.html#keeping-on-top-of-your-library, lodash stuff are probably included in danger npm
 // package, right?
@@ -24,6 +25,17 @@ const hasEntryManifestsChanges = first(danger.git.modified_files, (path) =>
 // the project lead here. If you ever use ours, change this below. Probably turn this into
 // an array of usernames in the future
 const projectLead = "ajhalili2006";
+
+// Dangerfiles
+const Dangerfiles = danger.git.fileMatch("danger/*.js")
+const ignoreWarningDangerfile = danger.github.issue.labels.includes("chores/dangerfile")
+if (Dangerfiles && author != projectLead) {
+  fail("Do not change the Dangerfiles! If you're here to help us improve our Dangerfiles, please ping an maintainer to add `chores/dangerfile` label.")
+} else if (Dangerfiles author == projectLead) {
+  message("Hey, @" + projectLead + "! Looks like you're about to change Dangerfiles, right? Please create an new issue about these changes so the community will review changes and collect feedback.")
+} else {
+  message("Changes to the Dangerfiles are being reviewed by an human as `chores/dangerfiles` is being labeled.")
+}
 
 // stuff for entry manifest files and our YAML schema JSON file we use for VS Code and other editors that support custom YAML schemas
 const hasYAMLSchemaChanges = first(danger.git.modified_files, (path) =>
@@ -77,7 +89,7 @@ const releaseDispatch = mr.labels.includes("release-dispatcher");
 if (
   apiServerPkgDiff.version &&
   releaseDispatch !== true &&
-  mr.author.username !== projectLead
+  author !== projectLead
 ) {
   fail(
     "For contributors, please don't make package version changes for `@rtapp-verify/server`. If you're an team member at The Pins Team (we consider Recap Time squad members as part of The Pins Team, through the `@RecapTime/squad` team membership in GitHub) or an community maintainer here, ping Andrei Jiroh so he can help you cut an new release for the API server. If he's not available, add `release-dispatcher` label to dismiss this error and check the Release workflow in maintainer docs. Make sure to coordinate with your fellow maintainers as you ship new releases."
