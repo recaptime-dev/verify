@@ -13,5 +13,8 @@ lists/creators/ @RecapTime/squad
 lists/publishers/ @RecapTime/squad
 lists/communities/ @RecapTime/squad
 
-# Dangerfile
-dangerfile.js @RecapTime/squad
+# Dangerfiles
+danger/ @RecapTime/squad
+
+# Counters
+api/counters/ @RecapTime/squad

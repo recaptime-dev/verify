@@ -2630,6 +2630,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.first@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "lodash.first@npm:3.0.0"
+  checksum: 1006312bc46ffa047b0527b93225b1216fdb50fe81d004c2a222699cf4d850a743ffbcb41010c5335f77e56528e7532155d5671ffd1a69578ad1ebe5950b5b99
+  languageName: node
+  linkType: hard
+
 "lodash.get@npm:^4.4.2":
   version: 4.4.2
   resolution: "lodash.get@npm:4.4.2"
@@ -3673,6 +3680,8 @@ __metadata:
     commitizen: ^4.2.3
     cz-conventional-changelog: ^3.3.0
     danger: ^10.6.6
+    lodash.first: ^3.0.0
+    lodash.includes: ^4.3.0
     markdown-toc: ^1.2.0
     prettier: ^2.1.1
     yaml-schema-validator: ^1.2.2
