@@ -33,14 +33,24 @@ const hasEntryManifestsChanges = first(danger.git.modified_files, (path) =>
 const projectLead = "ajhalili2006";
 
 // Dangerfiles
-const Dangerfiles = danger.git.fileMatch("danger/*.js")
-const ignoreWarningDangerfile = danger.github.issue.labels.includes("chores/dangerfile")
+const Dangerfiles = danger.git.fileMatch("danger/*.js");
+const ignoreWarningDangerfile = danger.github.issue.labels.includes(
+  "chores/dangerfile"
+);
 if (Dangerfiles && author != projectLead) {
-  fail("Do not change the Dangerfiles! If you're here to help us improve our Dangerfiles, please ping an maintainer to add `chores/dangerfile` label.")
-} else if (Dangerfiles author == projectLead) {
-  message("Hey, @" + projectLead + "! Looks like you're about to change Dangerfiles, right? Please create an new issue about these changes so the community will review changes and collect feedback.")
-} else {
-  message("Changes to the Dangerfiles are being reviewed by an human as `chores/dangerfiles` is being labeled.")
+  fail(
+    "Do not change the Dangerfiles! If you're here to help us improve our Dangerfiles, please ping an maintainer to add `chores/dangerfile` label."
+  );
+} else if (Dangerfiles && author == projectLead) {
+  message(
+    "Hey, @" +
+      projectLead +
+      "! Looks like you're about to change Dangerfiles, right? Please create an new issue about these changes so the community will review changes and collect feedback."
+  );
+} else if (Dangerfiles && author != projectLead && ignoreWarningDangerfile) {
+  message(
+    "Changes to the Dangerfiles are being reviewed by an human as `chores/dangerfiles` is being labeled."
+  );
 }
 
 // stuff for entry manifest files and our YAML schema JSON file we use for VS Code and other editors that support custom YAML schemas
