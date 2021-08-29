@@ -57,13 +57,13 @@ if (mr.assignee === null) {
 }
 
 // No PR is too small to include a description of why you made a change
-if (mr.description.length < 30) {
-  warn(
-    "We believe no pull/merge request is too small to include a description of changes you made, but please add an few words to describe your MR in 30 or more characters."
-  );
-} else if (mr.description.length === 0) {
+if (mr.description === null) {
   fail(
     "We believe no pull/merge request is too small to include a description of changes you made, please add a description to your MR."
+  );
+} else if (mr.description.length < 30) {
+  warn(
+    "We believe no pull/merge request is too small to include a description of changes you made, but please add an few words to describe your MR in 30 or more characters."
   );
 } else {
   message(
