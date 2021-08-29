@@ -39,6 +39,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["commitizen", "npm:4.2.3"],
             ["cz-conventional-changelog", "npm:3.3.0"],
             ["danger", "npm:10.6.6"],
+            ["lodash.first", "npm:3.0.0"],
+            ["lodash.includes", "npm:4.3.0"],
             ["markdown-toc", "npm:1.2.0"],
             ["prettier", "npm:2.2.1"],
             ["yaml-schema-validator", "npm:1.2.2"]
@@ -3027,6 +3029,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["lodash.first", [
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/cache/lodash.first-npm-3.0.0-52ca6e23b9-1006312bc4.zip/node_modules/lodash.first/",
+          "packageDependencies": [
+            ["lodash.first", "npm:3.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["lodash.get", [
         ["npm:4.4.2", {
           "packageLocation": "./.yarn/cache/lodash.get-npm-4.4.2-7bda64ed87-e403047ddb.zip/node_modules/lodash.get/",
@@ -4232,6 +4243,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["commitizen", "npm:4.2.3"],
             ["cz-conventional-changelog", "npm:3.3.0"],
             ["danger", "npm:10.6.6"],
+            ["lodash.first", "npm:3.0.0"],
+            ["lodash.includes", "npm:4.3.0"],
             ["markdown-toc", "npm:1.2.0"],
             ["prettier", "npm:2.2.1"],
             ["yaml-schema-validator", "npm:1.2.2"]
@@ -10605,9 +10618,11 @@ class NodeFS extends BasePortableFakeFS {
     return this.realFs.readFileSync(fsNativePath, encoding);
   }
 
-  async readdirPromise(p, opts) {
+  async readdirPromise(p, {
+    withFileTypes
+  } = {}) {
     return await new Promise((resolve, reject) => {
-      if (opts === null || opts === void 0 ? void 0 : opts.withFileTypes) {
+      if (withFileTypes) {
         this.realFs.readdir(npath.fromPortablePath(p), {
           withFileTypes: true
         }, this.makeCallback(resolve, reject));
@@ -10617,8 +10632,10 @@ class NodeFS extends BasePortableFakeFS {
     });
   }
 
-  readdirSync(p, opts) {
-    if (opts === null || opts === void 0 ? void 0 : opts.withFileTypes) {
+  readdirSync(p, {
+    withFileTypes
+  } = {}) {
+    if (withFileTypes) {
       return this.realFs.readdirSync(npath.fromPortablePath(p), {
         withFileTypes: true
       });
@@ -10919,12 +10936,20 @@ class ProxiedFS extends FakeFS {
     }
   }
 
-  async readdirPromise(p, opts) {
-    return this.baseFs.readdirPromise(this.mapToBase(p), opts);
+  async readdirPromise(p, {
+    withFileTypes
+  } = {}) {
+    return this.baseFs.readdirPromise(this.mapToBase(p), {
+      withFileTypes: withFileTypes
+    });
   }
 
-  readdirSync(p, opts) {
-    return this.baseFs.readdirSync(this.mapToBase(p), opts);
+  readdirSync(p, {
+    withFileTypes
+  } = {}) {
+    return this.baseFs.readdirSync(this.mapToBase(p), {
+      withFileTypes: withFileTypes
+    });
   }
 
   async readlinkPromise(p) {
@@ -12676,17 +12701,23 @@ class ZipFS extends BasePortableFakeFS {
     return this.getFileSource(entry, opts);
   }
 
-  async readdirPromise(p, opts) {
-    return this.readdirSync(p, opts);
+  async readdirPromise(p, {
+    withFileTypes
+  } = {}) {
+    return this.readdirSync(p, {
+      withFileTypes: withFileTypes
+    });
   }
 
-  readdirSync(p, opts) {
+  readdirSync(p, {
+    withFileTypes
+  } = {}) {
     const resolvedP = this.resolveFilename(`scandir '${p}'`, p);
     if (!this.entries.has(resolvedP) && !this.listings.has(resolvedP)) throw ENOENT(`scandir '${p}'`);
     const directoryListing = this.listings.get(resolvedP);
     if (!directoryListing) throw ENOTDIR(`scandir '${p}'`);
     const entries = [...directoryListing];
-    if (!(opts === null || opts === void 0 ? void 0 : opts.withFileTypes)) return entries;
+    if (!withFileTypes) return entries;
     return entries.map(name => {
       return Object.assign(this.statImpl(`lstat`, ppath.join(p, name)), {
         name
@@ -13561,25 +13592,37 @@ class ZipOpenFS extends BasePortableFakeFS {
     });
   }
 
-  async readdirPromise(p, opts) {
+  async readdirPromise(p, {
+    withFileTypes
+  } = {}) {
     return await this.makeCallPromise(p, async () => {
-      return await this.baseFs.readdirPromise(p, opts);
+      return await this.baseFs.readdirPromise(p, {
+        withFileTypes: withFileTypes
+      });
     }, async (zipFs, {
       subPath
     }) => {
-      return await zipFs.readdirPromise(subPath, opts);
+      return await zipFs.readdirPromise(subPath, {
+        withFileTypes: withFileTypes
+      });
     }, {
       requireSubpath: false
     });
   }
 
-  readdirSync(p, opts) {
+  readdirSync(p, {
+    withFileTypes
+  } = {}) {
     return this.makeCallSync(p, () => {
-      return this.baseFs.readdirSync(p, opts);
+      return this.baseFs.readdirSync(p, {
+        withFileTypes: withFileTypes
+      });
     }, (zipFs, {
       subPath
     }) => {
-      return zipFs.readdirSync(subPath, opts);
+      return zipFs.readdirSync(subPath, {
+        withFileTypes: withFileTypes
+      });
     }, {
       requireSubpath: false
     });
