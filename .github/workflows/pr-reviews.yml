@@ -3,19 +3,18 @@ name: "PR Reviews CI"
 on: 
   # Chaos ahead, PROCEED AT YOUR OWN RISK!
   pull_request_target:
-    types: [
-      assigned,
-      unassigned,
-      labeled,
-      unlabeled,
-      edited,
-      opened,
-      synchronize,
-      locked,
-      unlocked,
-      review_requested,
-      review_request_removed
-    ]
+    types: 
+      - assigned
+      - unassigned
+      - labeled
+      - unlabeled
+      - edited
+      - opened
+      - synchronize
+      - locked
+      - unlocked
+      - review_requested
+      - review_request_removed
 
 jobs:
   automated-reviews:
