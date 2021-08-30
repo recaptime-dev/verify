@@ -1,0 +1,39 @@
+# This file should be only used to burninate existing entries. Remember to
+# protect any burninated files in .github/CODEOWNERS file. Note that other humans
+# can pull an old version of an entry via Git history, but burninating it at Git
+# history level is proven to be chaotic for both forks and ours, including anyone
+# who maintain an Git mirror.
+apiVersion: rtapp-verify/v1
+
+# Change both name and legalName to these, just in case clients don't understand
+# the burninated annonation we've been set.
+name: 404 Entry Not Found
+legalName: Burninated
+
+# Our homegrown YAML linter may warn about category mismatch, but ignore it.
+submissionType: unspecified
+
+# If status is banned, the fields below are required.
+status: banned
+banInfo:
+  reason: "Burninated"
+  modlog: "https://recaptime.github.io/advisories/modlog/rtapp-verify/BURNINATION-YYYY-abcdef123456"
+
+# Speaking of socials, change username to burninatedUser or burninatedEntryDummyLink
+# and set anything else to false.
+# In case of socials.personalSites, change it to something like https://shitfuckery.bullshit.hq,
+# https://burninated.dev or https://merch.burninated.dev.
+socials:
+  twitter:
+    username: burninatedUser
+    fanAccount: false
+    verified: false
+  youtube:
+    channelId: burninatedEntryFakeChannelId
+    fanAccount: false
+    verified: false
+    partner: false
+
+annonations:
+  # Keep this annonation to true any remove anything else.
+  verify.rtapp.io/burninated: true

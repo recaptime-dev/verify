@@ -9,9 +9,12 @@
   },
   "homepage": "https://github.com/RecapTime/verify",
   "devDependencies": {
+    "@yarnpkg/sdks": "^2.4.2-rc.1",
     "commitizen": "^4.2.3",
     "cz-conventional-changelog": "^3.3.0",
     "danger": "^10.6.6",
+    "lodash.first": "^3.0.0",
+    "lodash.includes": "^4.3.0",
     "prettier": "^2.1.1"
   },
   "scripts": {
@@ -19,7 +22,12 @@
     "commit": "cz --signoff",
     "wizard:commit": "yarn commit",
     "docs:init": "git submodule update --init",
-    "docs:push": "git -C ${PWD}/docs push && git commit --signoff -m \"docs(global): Update HEAD for the docs subproject\" && git push origin"
+    "docs:push": "git -C ${PWD}/docs push && git commit --signoff -m \"docs(global): Update HEAD for the docs subproject\" && git push origin",
+    "ci:dangerjs-github": "danger ci --use-github-checks --dangerfile ./danger/github.js --verbose",
+    "ci:dangerjs-gitlab": "danger ci --dangerfile ./danger/gitlab.js --verbose",
+    "dangerfile:prettify": "prettier --write ./danger/**",
+    "dangerfile:check": "prettier --check ./danger/**",
+    "dangerfile:lint": "echo \"TODO: Add ESLint stuff\" && exit 1"
   },
   "license": "MIT",
   "repository": {

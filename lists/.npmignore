@@ -1,0 +1,5 @@
+# Ignore dev libraries and maintaenance scripts
+lib/**
+scripts/**
+# Also ignore our YAML templates btw.
+.templates/**

@@ -1,9 +1,11 @@
 {
-    "recommendations": [
-        "eamodio.gitlens",
-        "mikestead.dotenv",
-        "davidanson.vscode-markdownlint",
-        "vscode-icons-team.vscode-icons",
-        "timonwong.shellcheck"
-    ]
+  "recommendations": [
+    "eamodio.gitlens",
+    "mikestead.dotenv",
+    "davidanson.vscode-markdownlint",
+    "vscode-icons-team.vscode-icons",
+    "timonwong.shellcheck",
+    "arcanis.vscode-zipfs",
+    "esbenp.prettier-vscode"
+  ]
 }
