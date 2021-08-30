@@ -1,7 +1,7 @@
 # Entry Manifests Directory
 
-This directory is where we keep the source YAML files and stuff for our future npmjs package, to be possibly
-consumed by our app's server-side code in the future.
+This directory is where we keep the source YAML files and stuff for our future npmjs package, to be ~~possibly consumed by our app's server-side code in the future~~
+used by the `@rtapp-verify/server` backend stuff.
 
 ## Install and Usage
 
@@ -16,7 +16,8 @@ npm install @rtapp-verify/list-manifests
 # yarn
 yarn add @rtapp-verify/list-manifests
 
-# pnpm - todo
+# pnpm
+pnpm add @rtapp-verify/list-manifests
 ```
 
 To use in your Node.js code:
@@ -30,9 +31,22 @@ console.log(dojo);
 
 // get the index counter and send it as an Telegram message from your bot
 // assuming we use an HTTP client for that instead of Telegraf.js
-// Warning: WIP example code below!
-var indexCounter = counter("all");
+var indexCounter = counter; // counter is an JSON object, so you can pull all
 const yourHttpClient = require("axios")
+
+const response = await yourHttpClient({
+  method: "POST",
+  url: "https://api.telegram.org/bot1234:randomHash/sendMessage"
+  data: {
+    chat_id: 3108527, // use an real ID here
+    text: "*Counter*:\n\nCreators - " + indexCounter.cretor.scounter +
+      "\nCommunities - " + indexCounter.communities.counter,
+    parse_mode: "MarkdownV2"
+  }
+})
+
+// print out the result here, especially if you're on Pipedream
+return response
 ```
 
 ## Structure
@@ -59,7 +73,7 @@ More advanced documentation can be found [in the monorepo's maintainer documenta
 **With the issue tracker**: [Use this issue form][form] for GitHub users or choose `AddNewEntry` in the issue template chooser for GitLab users and follow instructions (HTML comments in Markdown for GitLab users) before hitting the submit button.
 
 <!-- update link below -->
-[form]: https://github.com/RecapTime/verify/issues/new?todo=true
+[form]: https://github.com/RecapTime/verify/issues/new?assignees=ajhalili2006%2CThePinsTeam&labels=request-forms%3Anew-entries%2Cenhancement&template=verify-an-entry.yml&title=Request+to+verify+Entry+Name+Here
 
 **With local copy of this monorepo**: After installing dependencies with Yarn in the root project directory, run `yarn entry-manifests:new-entry` (or `yarn entry-manifests:new-entry-onlycopy` if you don't like Yeoman) to open an wizard within the command line and follow instructions, then in your favorite code editor, edit the file as needed.
 
@@ -73,4 +87,4 @@ In case of an problem is servere enough or cannot be fixed (because the links ar
 
 ## Notes
 
-* Once it an category subdirectory has reaches 1K files, you need to use GitHub Codespaces or Gitpod to navigate around.
+* Once it an submission type subdirectory has reaches 1K files, you need to use GitHub Codespaces or Gitpod to navigate around.
