@@ -26,7 +26,7 @@ jobs:
           # Just don't cache the cursed $GITHUB_TOKEN
           persist-credentials: false
           # IDK about how we should test Dangerfile changes for now.
-          repository: 'https://github.com/RecapTime/verify'
+          repository: 'RecapTime/verify'
           ref: 'main'
           # We want them all
           fetch-depth: 0
