@@ -39,6 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["commitizen", "npm:4.2.3"],
             ["cz-conventional-changelog", "npm:3.3.0"],
             ["danger", "npm:10.6.6"],
+            ["danger-plugin-yarn", "npm:1.3.2"],
             ["lodash.first", "npm:3.0.0"],
             ["lodash.includes", "npm:4.3.0"],
             ["markdown-toc", "npm:1.2.0"],
@@ -1430,6 +1431,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["danger-plugin-yarn", [
+        ["npm:1.3.2", {
+          "packageLocation": "./.yarn/cache/danger-plugin-yarn-npm-1.3.2-81caa35f1d-fb90049bbf.zip/node_modules/danger-plugin-yarn/",
+          "packageDependencies": [
+            ["danger-plugin-yarn", "npm:1.3.2"],
+            ["date-fns", "npm:1.30.1"],
+            ["lodash.flatten", "npm:4.4.0"],
+            ["lodash.includes", "npm:4.3.0"],
+            ["node-fetch", "npm:1.7.3"],
+            ["semver", "npm:5.7.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["date-fns", [
+        ["npm:1.30.1", {
+          "packageLocation": "./.yarn/cache/date-fns-npm-1.30.1-b974a8f1e1-86b1f3269c.zip/node_modules/date-fns/",
+          "packageDependencies": [
+            ["date-fns", "npm:1.30.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["debug", [
         ["npm:2.6.9", {
           "packageLocation": "./.yarn/cache/debug-npm-2.6.9-7d4cb597dc-d2f51589ca.zip/node_modules/debug/",
@@ -1661,6 +1685,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/eivindfjeldstad-dot-npm-0.0.1-aa6138044f-4289d9d6f6.zip/node_modules/eivindfjeldstad-dot/",
           "packageDependencies": [
             ["eivindfjeldstad-dot", "npm:0.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["encoding", [
+        ["npm:0.1.13", {
+          "packageLocation": "./.yarn/cache/encoding-npm-0.1.13-82a1837d30-bb98632f8f.zip/node_modules/encoding/",
+          "packageDependencies": [
+            ["encoding", "npm:0.1.13"],
+            ["iconv-lite", "npm:0.6.3"]
           ],
           "linkType": "HARD",
         }]
@@ -2440,6 +2474,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["safer-buffer", "npm:2.1.2"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:0.6.3", {
+          "packageLocation": "./.yarn/cache/iconv-lite-npm-0.6.3-24b8aae27e-3f60d47a5c.zip/node_modules/iconv-lite/",
+          "packageDependencies": [
+            ["iconv-lite", "npm:0.6.3"],
+            ["safer-buffer", "npm:2.1.2"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["ignore", [
@@ -3038,6 +3080,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["lodash.flatten", [
+        ["npm:4.4.0", {
+          "packageLocation": "./.yarn/cache/lodash.flatten-npm-4.4.0-495935e617-0ac34a393d.zip/node_modules/lodash.flatten/",
+          "packageDependencies": [
+            ["lodash.flatten", "npm:4.4.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["lodash.get", [
         ["npm:4.4.2", {
           "packageLocation": "./.yarn/cache/lodash.get-npm-4.4.2-7bda64ed87-e403047ddb.zip/node_modules/lodash.get/",
@@ -3540,6 +3591,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["node-fetch", [
+        ["npm:1.7.3", {
+          "packageLocation": "./.yarn/cache/node-fetch-npm-1.7.3-eb8372f991-3bb0528c05.zip/node_modules/node-fetch/",
+          "packageDependencies": [
+            ["node-fetch", "npm:1.7.3"],
+            ["encoding", "npm:0.1.13"],
+            ["is-stream", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:2.6.1", {
           "packageLocation": "./.yarn/cache/node-fetch-npm-2.6.1-46c670dbc1-91075bedd5.zip/node_modules/node-fetch/",
           "packageDependencies": [
@@ -4243,6 +4303,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["commitizen", "npm:4.2.3"],
             ["cz-conventional-changelog", "npm:3.3.0"],
             ["danger", "npm:10.6.6"],
+            ["danger-plugin-yarn", "npm:1.3.2"],
             ["lodash.first", "npm:3.0.0"],
             ["lodash.includes", "npm:4.3.0"],
             ["markdown-toc", "npm:1.2.0"],

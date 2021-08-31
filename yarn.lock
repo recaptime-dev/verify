@@ -1194,6 +1194,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"danger-plugin-yarn@npm:^1.3.2":
+  version: 1.3.2
+  resolution: "danger-plugin-yarn@npm:1.3.2"
+  dependencies:
+    date-fns: ^1.28.5
+    lodash.flatten: ^4.4.0
+    lodash.includes: ^4.3.0
+    node-fetch: ^1.7.1
+    semver: ^5.4.1
+  checksum: fb90049bbf37ad9bf5203a2ff8248a34c5cd9af79633bc17ceb5f936eef6528b6e4661e6530f761f38bd7338deee9feac94d571154294d096bcb408374d3d14f
+  languageName: node
+  linkType: hard
+
 "danger@npm:^10.6.6":
   version: 10.6.6
   resolution: "danger@npm:10.6.6"
@@ -1245,6 +1258,13 @@ __metadata:
     danger-reset-status: distribution/commands/danger-reset-status.js
     danger-runner: distribution/commands/danger-runner.js
   checksum: f2ac80e8a064ba0d087bbe9e1c097c94ca2eeaa1b14b7a50e5a12581ab52179d20ee9dbdde3b08d254b3a952839ab6b0d90dc634d445c15163bc1a214837f32e
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^1.28.5":
+  version: 1.30.1
+  resolution: "date-fns@npm:1.30.1"
+  checksum: 86b1f3269cbb1f3ee5ac9959775ea6600436f4ee2b78430cd427b41a0c9fabf740b1a5d401c085f3003539a6f4755c7c56c19fbd70ce11f6f673f6bc8075b710
   languageName: node
   linkType: hard
 
@@ -1418,6 +1438,15 @@ __metadata:
   version: 0.0.1
   resolution: "eivindfjeldstad-dot@npm:0.0.1"
   checksum: 4289d9d6f61f3f50930f7e661b77a26f7c9e2ef0f14d6115eb93c95d9511df6fa12b4e74df10f899ac0c4302144ca5b33202aa69964cd34149426f4ed8fd987e
+  languageName: node
+  linkType: hard
+
+"encoding@npm:^0.1.11":
+  version: 0.1.13
+  resolution: "encoding@npm:0.1.13"
+  dependencies:
+    iconv-lite: ^0.6.2
+  checksum: bb98632f8ffa823996e508ce6a58ffcf5856330fde839ae42c9e1f436cc3b5cc651d4aeae72222916545428e54fd0f6aa8862fd8d25bdbcc4589f1e3f3715e7f
   languageName: node
   linkType: hard
 
@@ -2120,6 +2149,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"iconv-lite@npm:^0.6.2":
+  version: 0.6.3
+  resolution: "iconv-lite@npm:0.6.3"
+  dependencies:
+    safer-buffer: ">= 2.1.2 < 3.0.0"
+  checksum: 3f60d47a5c8fc3313317edfd29a00a692cc87a19cac0159e2ce711d0ebc9019064108323b5e493625e25594f11c6236647d8e256fbe7a58f4a3b33b89e6d30bf
+  languageName: node
+  linkType: hard
+
 "ignore@npm:^5.1.4":
   version: 5.1.8
   resolution: "ignore@npm:5.1.8"
@@ -2348,7 +2386,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-stream@npm:^1.1.0":
+"is-stream@npm:^1.0.1, is-stream@npm:^1.1.0":
   version: 1.1.0
   resolution: "is-stream@npm:1.1.0"
   checksum: 063c6bec9d5647aa6d42108d4c59723d2bd4ae42135a2d4db6eadbd49b7ea05b750fd69d279e5c7c45cf9da753ad2c00d8978be354d65aa9f6bb434969c6a2ae
@@ -2634,6 +2672,13 @@ __metadata:
   version: 3.0.0
   resolution: "lodash.first@npm:3.0.0"
   checksum: 1006312bc46ffa047b0527b93225b1216fdb50fe81d004c2a222699cf4d850a743ffbcb41010c5335f77e56528e7532155d5671ffd1a69578ad1ebe5950b5b99
+  languageName: node
+  linkType: hard
+
+"lodash.flatten@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "lodash.flatten@npm:4.4.0"
+  checksum: 0ac34a393d4b795d4b7421153d27c13ae67e08786c9cbb60ff5b732210d46f833598eee3fb3844bb10070e8488efe390ea53bb567377e0cb47e9e630bf0811cb
   languageName: node
   linkType: hard
 
@@ -3078,6 +3123,16 @@ __metadata:
   version: 2.6.1
   resolution: "node-fetch@npm:2.6.1"
   checksum: 91075bedd57879117e310fbcc36983ad5d699e522edb1ebcdc4ee5294c982843982652925c3532729fdc86b2d64a8a827797a745f332040d91823c8752ee4d7c
+  languageName: node
+  linkType: hard
+
+"node-fetch@npm:^1.7.1":
+  version: 1.7.3
+  resolution: "node-fetch@npm:1.7.3"
+  dependencies:
+    encoding: ^0.1.11
+    is-stream: ^1.0.1
+  checksum: 3bb0528c05d541316ebe52770d71ee25a6dce334df4231fd55df41a644143e07f068637488c18a5b0c43f05041dbd3346752f9e19b50df50569a802484544d5b
   languageName: node
   linkType: hard
 
@@ -3680,6 +3735,7 @@ __metadata:
     commitizen: ^4.2.3
     cz-conventional-changelog: ^3.3.0
     danger: ^10.6.6
+    danger-plugin-yarn: ^1.3.2
     lodash.first: ^3.0.0
     lodash.includes: ^4.3.0
     markdown-toc: ^1.2.0
@@ -3736,14 +3792,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"safer-buffer@npm:>= 2.1.2 < 3, safer-buffer@npm:^2.0.2":
+"safer-buffer@npm:>= 2.1.2 < 3, safer-buffer@npm:>= 2.1.2 < 3.0.0, safer-buffer@npm:^2.0.2":
   version: 2.1.2
   resolution: "safer-buffer@npm:2.1.2"
   checksum: cab8f25ae6f1434abee8d80023d7e72b598cf1327164ddab31003c51215526801e40b66c5e65d658a0af1e9d6478cadcb4c745f4bd6751f97d8644786c0978b0
   languageName: node
   linkType: hard
 
-"semver@npm:^5.5.0, semver@npm:^5.6.0":
+"semver@npm:^5.4.1, semver@npm:^5.5.0, semver@npm:^5.6.0":
   version: 5.7.1
   resolution: "semver@npm:5.7.1"
   bin:
