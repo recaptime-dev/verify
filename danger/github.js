@@ -1,4 +1,6 @@
+// Danger itself and the plugins.
 const { danger, fail, markdown, warn, message } = require("danger");
+const { yarn } = require("danger-plugin-yarn");
 
 /*
  * GitLab stuff are on ./gitlab.js file
@@ -19,9 +21,6 @@ const documentation = danger.git.fileMatch("**/*.md");
 // changelogs
 const EMchangelog = danger.git.fileMatch("lists/CHANGELOG.md");
 const docsChangelog = danger.git.fileMatch("pages/CHANGELOG.md");
-// manifests + lockfiles
-const YarnManifest = danger.git.fileMatch("**/package.json");
-const lockfileYarnpkg = danger.git.fileMatch("yarn.lock");
 // individual packages
 const hasEntryManifestsChanges = first(danger.git.modified_files, (path) =>
   path.startsWith("lists/")
@@ -33,7 +32,7 @@ const hasEntryManifestsChanges = first(danger.git.modified_files, (path) =>
 const projectLead = "ajhalili2006";
 
 // Dangerfiles
-const Dangerfiles = danger.git.fileMatch("danger/*.js");
+const Dangerfiles = danger.git.fileMatch("danger/*.js").edited;
 const ignoreWarningDangerfile = danger.github.issue.labels.includes(
   "chores/dangerfile"
 );
@@ -47,7 +46,11 @@ if (Dangerfiles && author != projectLead) {
       projectLead +
       "! Looks like you're about to change Dangerfiles, right? Please create an new issue about these changes so the community will review changes and collect feedback."
   );
-} else if (Dangerfiles && author != projectLead && ignoreWarningDangerfile) {
+} else if (
+  Dangerfiles &&
+  author != projectLead &&
+  ignoreWarningDangerfile === true
+) {
   message(
     "Changes to the Dangerfiles are being reviewed by an human as `chores/dangerfiles` is being labeled."
   );
@@ -85,9 +88,9 @@ if (YarnManifest.modified && !lockfileYarnpkg.modified) {
 // Ensure there's atleast one assignee in each PR
 // In GitLab, WIP is being deprecated in favor of Draft as prefix.
 if (pr.assignee === null) {
-  const method = pr.title.includes("WIP:") ? warn : fail;
+  const method = pr.title.includes("WIP") ? warn : fail;
   method(
-    "Please assign someone to merge this PR, and optionally include people who should review."
+    "Please assign someone to merge this PR, and optionally include people who should review. If you're an open-source contributor, please wait until @RecapTime/squad assigns to someone or when one of our @RecapTime/contributors assinged themselves to this PR."
   );
 }
 
@@ -120,3 +123,6 @@ if (
     "For contributors, please don't make package version changes for `@rtapp-verify/server`. If you're an team member at The Pins Team (we consider Recap Time squad members as part of The Pins Team, through the `@RecapTime/squad` team membership in GitHub) or an community maintainer here, ping Andrei Jiroh so he can help you cut an new release for the API server. If he's not available, add `release-dispatcher` label to dismiss this error and check the Release workflow in maintainer docs. Make sure to coordinate with your fellow maintainers as you ship new releases."
   );
 }
+
+// some plugins
+yarn();

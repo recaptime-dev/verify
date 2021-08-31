@@ -1,4 +1,7 @@
+// Danger itself and the plugins.
 const { danger, fail, markdown, warn, message } = require("danger");
+const { yarn } = require("danger-plugin-yarn");
+
 const mr = danger.gitlab.mr;
 const author = mr.author.username;
 
@@ -28,9 +31,7 @@ const projectLead = "ajhalili2006";
 
 // Dangerfiles
 const Dangerfiles = danger.git.fileMatch("danger/*.js");
-const ignoreWarningDangerfile = danger.github.issue.labels.includes(
-  "chores/dangerfile"
-);
+const ignoreWarningDangerfile = mr.labels.includes("chores/dangerfile");
 if (Dangerfiles && author != projectLead) {
   fail(
     "Do not change the Dangerfiles! If you're here to help us improve our Dangerfiles, please ping an maintainer to add `chores/dangerfile` label."
@@ -41,7 +42,11 @@ if (Dangerfiles && author != projectLead) {
       projectLead +
       "! Looks like you're about to change Dangerfiles, right? Please create an new issue about these changes so the community will review changes and collect feedback."
   );
-} else if (Dangerfiles && author != projectLead && ignoreWarningDangerfile) {
+} else if (
+  Dangerfiles &&
+  author != projectLead &&
+  ignoreWarningDangerfile === true
+) {
   message(
     "Changes to the Dangerfiles are being reviewed by an human as `chores/dangerfiles` is being labeled."
   );
@@ -102,6 +107,9 @@ if (
   author !== projectLead
 ) {
   fail(
-    "For contributors, please don't make package version changes for `@rtapp-verify/server`. If you're an team member at The Pins Team (we consider Recap Time squad members as part of The Pins Team, through the `@RecapTime/squad` team membership in GitHub) or an community maintainer here, ping Andrei Jiroh so he can help you cut an new release for the API server. If he's not available, add `release-dispatcher` label to dismiss this error and check the Release workflow in maintainer docs. Make sure to coordinate with your fellow maintainers as you ship new releases."
+    "For contributors, please don't make package version changes for `@rtapp-verify/server`. If you're an team member at The Pins Team (we consider Recap Time squad members as part of The Pins Team, through the `@RecapTime/squad` subgroup membership in GitLab SaaS) or an community maintainer here, ping Andrei Jiroh so he can help you cut an new release for the API server. If he's not available, add `release-dispatcher` label to dismiss this error and check the Release workflow in maintainer docs. Make sure to coordinate with your fellow maintainers as you ship new releases."
   );
 }
+
+// some plugins
+yarn();
