@@ -78,13 +78,6 @@ if (documentation.edited) {
   );
 }
 
-// Remind people to update lockfiles, may considering using danger-plugin-yarn
-if (YarnManifest.modified && !lockfileYarnpkg.modified) {
-  warn(
-    "We found changes to the package manifest files for Node.js, but the Yarn lockfile isn't updated. Did you just updated the scripts?"
-  );
-}
-
 // Ensure there's atleast one assignee in each PR
 // In GitLab, WIP is being deprecated in favor of Draft as prefix.
 if (pr.assignee === null) {

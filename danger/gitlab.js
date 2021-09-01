@@ -16,9 +16,6 @@ const documentation = danger.git.fileMatch("**/*.md");
 // changelogs
 const EMchangelog = danger.git.fileMatch("lists/CHANGELOG.md");
 const docsChangelog = danger.git.fileMatch("pages/CHANGELOG.md");
-// manifests + lockfiles
-const YarnManifest = danger.git.fileMatch("**/package.json");
-const lockfileYarnpkg = danger.git.fileMatch("yarn.lock");
 // individual packages
 const hasEntryManifestsChanges = first(danger.git.modified_files, (path) =>
   path.startsWith("lists/")
@@ -30,7 +27,7 @@ const hasEntryManifestsChanges = first(danger.git.modified_files, (path) =>
 const projectLead = "ajhalili2006";
 
 // Dangerfiles
-const Dangerfiles = danger.git.fileMatch("danger/*.js");
+const Dangerfiles = danger.git.fileMatch("danger/*.js").edited;
 const ignoreWarningDangerfile = mr.labels.includes("chores/dangerfile");
 if (Dangerfiles && author != projectLead) {
   fail(
