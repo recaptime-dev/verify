@@ -1,3 +1,6 @@
 [submodule "docs"]
 	path = docs
 	url = https://github.com/RecapTime/verify.wiki.git
+[submodule "utils/rss/dependencies/rfeed"]
+	path = utils/rss/dependencies/rfeed
+	url = https://github.com/svpino/rfeed.git

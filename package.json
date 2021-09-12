@@ -43,5 +43,9 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  }
+  },
+  "workspaces": [
+    "utils/rss",
+    "lists"
+  ]
 }

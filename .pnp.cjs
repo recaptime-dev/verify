@@ -21,11 +21,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       {
         "name": "rtapp-verify",
         "reference": "workspace:."
+      },
+      {
+        "name": "@rtapp-verify/rss",
+        "reference": "workspace:utils/rss"
       }
     ],
     "enableTopLevelFallback": true,
     "ignorePatternData": "(^(?:\\.yarn\\/sdks(?:\\/(?!\\.{1,2}(?:\\/|$))(?:(?:(?!(?:^|\\/)\\.{1,2}(?:\\/|$)).)*?)|$))$)",
     "fallbackExclusionList": [
+      ["@rtapp-verify/rss", ["workspace:utils/rss"]],
       ["rtapp-verify", ["workspace:."]]
     ],
     "fallbackPool": [
@@ -334,6 +339,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@prettier/plugin-xml", [
+        ["npm:1.0.2", {
+          "packageLocation": "./.yarn/cache/@prettier-plugin-xml-npm-1.0.2-f2cdeca75d-6f9dbd72b9.zip/node_modules/@prettier/plugin-xml/",
+          "packageDependencies": [
+            ["@prettier/plugin-xml", "npm:1.0.2"],
+            ["@xml-tools/parser", "npm:1.0.11"],
+            ["prettier", "npm:2.4.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@rtapp-verify/rss", [
+        ["workspace:utils/rss", {
+          "packageLocation": "./utils/rss/",
+          "packageDependencies": [
+            ["@rtapp-verify/rss", "workspace:utils/rss"],
+            ["@prettier/plugin-xml", "npm:1.0.2"],
+            ["prettier", "npm:2.4.0"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
       ["@sindresorhus/is", [
         ["npm:4.0.1", {
           "packageLocation": "./.yarn/cache/@sindresorhus-is-npm-4.0.1-30716423e5-92ae3f3d76.zip/node_modules/@sindresorhus/is/",
@@ -450,6 +477,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-treeify-npm-1.0.0-b5e04e9cd3-1b2397030d.zip/node_modules/@types/treeify/",
           "packageDependencies": [
             ["@types/treeify", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@xml-tools/parser", [
+        ["npm:1.0.11", {
+          "packageLocation": "./.yarn/cache/@xml-tools-parser-npm-1.0.11-7ca2d7689b-79f32386ef.zip/node_modules/@xml-tools/parser/",
+          "packageDependencies": [
+            ["@xml-tools/parser", "npm:1.0.11"],
+            ["chevrotain", "npm:7.1.1"]
           ],
           "linkType": "HARD",
         }]
@@ -1029,6 +1066,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/chardet-npm-0.7.0-27933dd6c7-6fd5da1f5d.zip/node_modules/chardet/",
           "packageDependencies": [
             ["chardet", "npm:0.7.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["chevrotain", [
+        ["npm:7.1.1", {
+          "packageLocation": "./.yarn/cache/chevrotain-npm-7.1.1-6e18695936-3ba268b745.zip/node_modules/chevrotain/",
+          "packageDependencies": [
+            ["chevrotain", "npm:7.1.1"],
+            ["regexp-to-ast", "npm:0.5.0"]
           ],
           "linkType": "HARD",
         }]
@@ -3974,6 +4021,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.2.1"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:2.4.0", {
+          "packageLocation": "./.yarn/cache/prettier-npm-2.4.0-9f056d9529-ac1bf07566.zip/node_modules/prettier/",
+          "packageDependencies": [
+            ["prettier", "npm:2.4.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["pretty-bytes", [
@@ -4140,6 +4194,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["regex-not", "npm:1.0.2"],
             ["extend-shallow", "npm:3.0.2"],
             ["safe-regex", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["regexp-to-ast", [
+        ["npm:0.5.0", {
+          "packageLocation": "./.yarn/cache/regexp-to-ast-npm-0.5.0-1e96b9f3a0-72e32f2a12.zip/node_modules/regexp-to-ast/",
+          "packageDependencies": [
+            ["regexp-to-ast", "npm:0.5.0"]
           ],
           "linkType": "HARD",
         }]
@@ -10679,11 +10742,9 @@ class NodeFS extends BasePortableFakeFS {
     return this.realFs.readFileSync(fsNativePath, encoding);
   }
 
-  async readdirPromise(p, {
-    withFileTypes
-  } = {}) {
+  async readdirPromise(p, opts) {
     return await new Promise((resolve, reject) => {
-      if (withFileTypes) {
+      if (opts === null || opts === void 0 ? void 0 : opts.withFileTypes) {
         this.realFs.readdir(npath.fromPortablePath(p), {
           withFileTypes: true
         }, this.makeCallback(resolve, reject));
@@ -10693,10 +10754,8 @@ class NodeFS extends BasePortableFakeFS {
     });
   }
 
-  readdirSync(p, {
-    withFileTypes
-  } = {}) {
-    if (withFileTypes) {
+  readdirSync(p, opts) {
+    if (opts === null || opts === void 0 ? void 0 : opts.withFileTypes) {
       return this.realFs.readdirSync(npath.fromPortablePath(p), {
         withFileTypes: true
       });
@@ -10997,20 +11056,12 @@ class ProxiedFS extends FakeFS {
     }
   }
 
-  async readdirPromise(p, {
-    withFileTypes
-  } = {}) {
-    return this.baseFs.readdirPromise(this.mapToBase(p), {
-      withFileTypes: withFileTypes
-    });
+  async readdirPromise(p, opts) {
+    return this.baseFs.readdirPromise(this.mapToBase(p), opts);
   }
 
-  readdirSync(p, {
-    withFileTypes
-  } = {}) {
-    return this.baseFs.readdirSync(this.mapToBase(p), {
-      withFileTypes: withFileTypes
-    });
+  readdirSync(p, opts) {
+    return this.baseFs.readdirSync(this.mapToBase(p), opts);
   }
 
   async readlinkPromise(p) {
@@ -12762,23 +12813,17 @@ class ZipFS extends BasePortableFakeFS {
     return this.getFileSource(entry, opts);
   }
 
-  async readdirPromise(p, {
-    withFileTypes
-  } = {}) {
-    return this.readdirSync(p, {
-      withFileTypes: withFileTypes
-    });
+  async readdirPromise(p, opts) {
+    return this.readdirSync(p, opts);
   }
 
-  readdirSync(p, {
-    withFileTypes
-  } = {}) {
+  readdirSync(p, opts) {
     const resolvedP = this.resolveFilename(`scandir '${p}'`, p);
     if (!this.entries.has(resolvedP) && !this.listings.has(resolvedP)) throw ENOENT(`scandir '${p}'`);
     const directoryListing = this.listings.get(resolvedP);
     if (!directoryListing) throw ENOTDIR(`scandir '${p}'`);
     const entries = [...directoryListing];
-    if (!withFileTypes) return entries;
+    if (!(opts === null || opts === void 0 ? void 0 : opts.withFileTypes)) return entries;
     return entries.map(name => {
       return Object.assign(this.statImpl(`lstat`, ppath.join(p, name)), {
         name
@@ -13653,37 +13698,25 @@ class ZipOpenFS extends BasePortableFakeFS {
     });
   }
 
-  async readdirPromise(p, {
-    withFileTypes
-  } = {}) {
+  async readdirPromise(p, opts) {
     return await this.makeCallPromise(p, async () => {
-      return await this.baseFs.readdirPromise(p, {
-        withFileTypes: withFileTypes
-      });
+      return await this.baseFs.readdirPromise(p, opts);
     }, async (zipFs, {
       subPath
     }) => {
-      return await zipFs.readdirPromise(subPath, {
-        withFileTypes: withFileTypes
-      });
+      return await zipFs.readdirPromise(subPath, opts);
     }, {
       requireSubpath: false
     });
   }
 
-  readdirSync(p, {
-    withFileTypes
-  } = {}) {
+  readdirSync(p, opts) {
     return this.makeCallSync(p, () => {
-      return this.baseFs.readdirSync(p, {
-        withFileTypes: withFileTypes
-      });
+      return this.baseFs.readdirSync(p, opts);
     }, (zipFs, {
       subPath
     }) => {
-      return zipFs.readdirSync(subPath, {
-        withFileTypes: withFileTypes
-      });
+      return zipFs.readdirSync(subPath, opts);
     }, {
       requireSubpath: false
     });
