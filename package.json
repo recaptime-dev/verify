@@ -45,7 +45,8 @@
     }
   },
   "workspaces": [
-    "utils/rss",
-    "lists"
+    "utils/**",
+    "lists",
+    "pages"
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "name": "@rtapp-verify/qa-bot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GitHub app for automating QA workflows in GitHub repos for verify and app at @RecapTime org.",
+  "author": "Andrei Jiroh Eugenio Halili <ajhalili2006@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/RecapTime/verify",
+  "keywords": [
+    "probot",
+    "github",
+    "probot-app"
+  ],
+  "scripts": {
+    "start": "probot run ./index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "probot": "^11.0.1"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "nock": "^13.0.5",
+    "smee-client": "^1.2.2"
+  },
+  "engines": {
+    "node": ">= 10.13.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

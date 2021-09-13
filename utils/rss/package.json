@@ -3,7 +3,7 @@
   "packageManager": "yarn@3.0.1",
   "scripts": {
     "py3:install-rfeed": "pip3 install ./dependencies/rfeed --user",
-    "rss-generator:recent": "python3 recent_activity.py > out/recent-activity.xml",
+    "rss-generator:recent": "python3 recent_activity.py > out/recent.xml",
     "rss-generator:historical": "python3 historical_activity.py > out/all.xml",
     "rss-generator:recent-preview": "echo \"Recent Activity Atom feed preview, DO NOT UPDATE ./out/recent.xml!\" && python3 recent_activity.py",
     "rss-generator:historical-preview": "echo \"Historical Activity Atom feed preview, DO NOT UPDATE ./out/all.xml!\" && python3 historical_activity.py",
