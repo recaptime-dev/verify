@@ -28,7 +28,10 @@
     "ci:dangerjs-gitlab": "danger ci --dangerfile ./danger/gitlab.js --verbose",
     "dangerfile:prettify": "prettier --write ./danger/**",
     "dangerfile:check": "prettier --check ./danger/**",
-    "dangerfile:lint": "echo \"TODO: Add ESLint stuff\" && exit 1"
+    "dangerfile:lint": "echo \"TODO: Add ESLint stuff\" && exit 1",
+    "submodules:init": "git submodule update --init",
+    "docker:build": "yarn submodules:init && docker build --tag ${1:-\"ghcr.io/recaptime/verification-endpoint-container:localdev\"} --file docker/Dockerfile .",
+    "docker:run": "docker run --rm -it ghcr.io/recaptime/verification-endpoint-container:localdev \"$@\""
   },
   "license": "MIT",
   "repository": {

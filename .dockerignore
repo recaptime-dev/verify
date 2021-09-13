@@ -10,3 +10,7 @@
 **/dist
 **/*.pem
 Dockerfile
+LICENSE
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+**/*.code-workspace
