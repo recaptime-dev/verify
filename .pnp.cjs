@@ -1504,6 +1504,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.6.3"],
             ["nock", "npm:13.1.3"],
             ["probot", "npm:11.4.1"],
+            ["probot-commands", "npm:1.1.0"],
+            ["probot-metadata", "virtual:ceeccec555159abae5d1d436eb86cdf7f2e5382a1876b87d8ea120773f208c4a5ff1f87e62ee69e29e8d41a1f5b730a633a779c8d0e28bbbb5766e5cc6993945#npm:2.0.1"],
             ["smee-client", "npm:1.2.2"]
           ],
           "linkType": "SOFT",
@@ -9040,6 +9042,37 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["update-dotenv", "virtual:fc03032b44ec40966b63968d961f772420b8528c4a8daf24181b76f5df3a11df90d26e16363f8103bfa17352f1ebe5d93bb6fcc882532f5815b5f38dead26a73#npm:1.1.1"],
             ["update-notifier", "npm:5.1.0"],
             ["uuid", "npm:8.3.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["probot-commands", [
+        ["npm:1.1.0", {
+          "packageLocation": "./.yarn/cache/probot-commands-npm-1.1.0-d7772e1e76-47f0ce0d21.zip/node_modules/probot-commands/",
+          "packageDependencies": [
+            ["probot-commands", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["probot-metadata", [
+        ["npm:2.0.1", {
+          "packageLocation": "./.yarn/cache/probot-metadata-npm-2.0.1-c3b2fdcb77-2ead7b4a50.zip/node_modules/probot-metadata/",
+          "packageDependencies": [
+            ["probot-metadata", "npm:2.0.1"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:ceeccec555159abae5d1d436eb86cdf7f2e5382a1876b87d8ea120773f208c4a5ff1f87e62ee69e29e8d41a1f5b730a633a779c8d0e28bbbb5766e5cc6993945#npm:2.0.1", {
+          "packageLocation": "./.yarn/__virtual__/probot-metadata-virtual-7e82fb295a/0/cache/probot-metadata-npm-2.0.1-c3b2fdcb77-2ead7b4a50.zip/node_modules/probot-metadata/",
+          "packageDependencies": [
+            ["probot-metadata", "virtual:ceeccec555159abae5d1d436eb86cdf7f2e5382a1876b87d8ea120773f208c4a5ff1f87e62ee69e29e8d41a1f5b730a633a779c8d0e28bbbb5766e5cc6993945#npm:2.0.1"],
+            ["@types/probot", null],
+            ["probot", "npm:11.4.1"]
+          ],
+          "packagePeers": [
+            "@types/probot",
+            "probot"
           ],
           "linkType": "HARD",
         }]

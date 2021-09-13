@@ -1161,6 +1161,8 @@ __metadata:
     jest: ^26.6.3
     nock: ^13.0.5
     probot: ^11.0.1
+    probot-commands: ^1.1.0
+    probot-metadata: ^2.0.1
     smee-client: ^1.2.2
   languageName: unknown
   linkType: soft
@@ -7791,6 +7793,22 @@ fsevents@^2.1.2:
   bin:
     prettyjson: ./bin/prettyjson
   checksum: 4786cf7cb74ddc2293eaf67587a5f21cee6aa6111a53c0b8ec8d5b77fe5d006b6ca09d2c72d52467772c86130fa95c1acfd3bfab0da0a854b8977ff7db04ebf2
+  languageName: node
+  linkType: hard
+
+"probot-commands@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "probot-commands@npm:1.1.0"
+  checksum: 47f0ce0d214d94486a6711319232aef4c855f678d7010e5016ef2e6135963f17ddd0b6c6a2184e8a05f42e9c4d2c3f3f2e5cb24eb16a5e9a5c7e099b79092290
+  languageName: node
+  linkType: hard
+
+"probot-metadata@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "probot-metadata@npm:2.0.1"
+  peerDependencies:
+    probot: ">=10"
+  checksum: 2ead7b4a508ea05630a100f0ffc8d27d4e41206ef798e1c1537c7dd4bff60d3c65bf8c4beba04e081c6232621b8ea49ac984e22dd454ea5809b8a3379a4ee6d0
   languageName: node
   linkType: hard
 
