@@ -3,24 +3,24 @@
 > A GitHub App built with [Probot](https://github.com/probot/probot) that developed for automating QA workflows in GitHub repos
 for [verify](https://github.com/RecapTIme/verify) and [app](https://github.com/RecapTime/app) at @RecapTime org.
 
-## Setup
+## Setup / Running Locally
 
 ```sh
-# Install dependencies
-npm install
+# PnP is enabled in this repo, but you probably want to duoble check
+yarn install
 
 # Run the bot
-npm start
+yarn workspace @rtapp-verify/qa-bot
 ```
 
-## Docker
+## With Docker
 
 ```sh
-# 1. Build container
-docker build -t rtapp-qa-bot .
+# 1. Build container using this project-wide Yarn script
+yarn docker:build-localdev
 
 # 2. Start container
-docker run -e APP_ID=<app-id> -e PRIVATE_KEY=<pem-value> rtapp-qa-bot
+docker run -e APP_ID=<app-id> -e PRIVATE_KEY=<pem-value> ghcr.io/recaptime/verification-endpoint-monorepo:localdev qa-github
 ```
 
 ## Contributing

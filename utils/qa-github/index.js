@@ -1,42 +1,36 @@
-// Checks API example
-// See: https://developer.github.com/v3/checks/ to learn more
+const commands = require("probot-commands");
+const metadata = require("probot-metadata");
+const debugIssue = {
+  owner: "RecapTime", // still same org btw
+  repo: "qa-bot-debugging-tracker", // an private repo for debugging stuff
+  issue_number: 1, // probably?
+};
 
-/**
- * This is the main entrypoint to your Probot app
- * @param {import('probot').Probot} app
- */
 module.exports = (app) => {
-  app.on(["check_suite.requested", "check_run.rerequested"], check);
+  // TODO: Only the maintainers should ever fuse this command. You can always
+  // comment on an issue to unstale as always.
+  commands(app, "unstale", unstaleForever);
+  commands(app, "stale", removeUnstaleLabel);
 
-  async function check(context) {
-    const startTime = new Date();
+  async function unstaleForever(context) {
+    if (context.payload.labels.includes == "stale") {
+      context.octokit.issues.removeLabel(context.issue({ name: "stale" }));
+    }
 
-    // Do stuff
-    const {
-      head_branch: headBranch,
-      head_sha: headSha,
-    } = context.payload.check_suite;
-    // Probot API note: context.repo() => {username: 'hiimbex', repo: 'testing-things'}
-    return context.octokit.checks.create(
-      context.repo({
-        name: "My app!",
-        head_branch: headBranch,
-        head_sha: headSha,
-        status: "completed",
-        started_at: startTime,
-        conclusion: "success",
-        completed_at: new Date(),
-        output: {
-          title: "Probot check!",
-          summary: "The check has passed!",
-        },
-      })
-    );
+    // idk if this works, but yolo
+    context.octokit.issues.deleteComment(context.payload.comments.id);
+
+    const label = "never-stale";
+    return context.octokit.issues.addLabels(context.issue({ label }));
   }
 
-  // For more information on building apps:
-  // https://probot.github.io/docs/
-
-  // To get your app running against GitHub, see:
-  // https://probot.github.io/docs/development/
+  async function removeUnstaleLabel(context) {
+    if (context.payload.labels.includes == "never-stale") {
+      return context.octokit.issue.removeLabel(
+        context.issue({ name: "never-stale" })
+      );
+    } else {
+      return console.log("TODO");
+    }
+  }
 };
