@@ -19,9 +19,11 @@ export DOCKER_ENTRYPOINT_USED=1
 # Main logic is here
 main() {
     if [[ $1 == "qa-github" ]]; then
-       yarn workspace utils/qa-github run start
+       yarn workspace @rtapp-verify/qa-bot run start
     elif [[ $1 == "api" ]]; then
-       yarn workspace api run start
+       yarn workspace @rtapp-verify/api-server run start
+    elif [[ $1 == "shell" ]]; then
+       exec bash -li
     else
        exec "$@"
     fi
