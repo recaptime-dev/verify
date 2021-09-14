@@ -27,10 +27,10 @@ from rfeed import *
 # it's fine not to include this section, but please, do not remove this!
 initialEntry = Item(
         title = "Initial entry / Old Entries",
-        link = "https://raw.githubusercontent.com/RecapTime/verify/main/utils/rss/feeds/all.xml",
+        link = "https://feeds.feedburner.com/rtapp-verify-registry-historical-activity",
         description = "Old entries had been moved to this seperate Atom feed for archival purposes, maintainers shouldn't remove this entry.",
         author = "Andrei Jiroh Halili",
-        guid = Guid("https://raw.githubusercontent.com/RecapTime/verify/main/utils/rss/feeds/all.xml"),
+        guid = Guid("https://feeds.feedburner.com/rtapp-verify-registry-historical-activity"),
         # When updating published date, remember thee format YYYY, MM, DD, HH, MM and use UTC timezone
         # as much as possible.
         pubDate = datetime(2021, 9, 12, 11, 45, tzinfo=timezone.utc))
@@ -39,7 +39,7 @@ initialEntry = Item(
 
 feed = Feed(
         title = "Recent Manifest Changes for verify.rtapp.io registry",
-        link = "https://gitlab.com/RecapTime/verify",
+        link = "https://github.com/RecapTime/verify",
         description = "Currently manually-maintained Atom feed for manifest changes in @rtapp-verify/list-manifests Yarn workspace.",
         language = "en-US",
         lastBuildDate = datetime.now(timezone.utc),

@@ -24,10 +24,10 @@ from rfeed import *
 # it's fine not to include this section, but please, do not remove this!
 initialEntry = Item(
         title = "Placeholder Content",
-        link = "https://gitlab.com/RecapTime/verify",
+        link = "https://github.com/RecapTime/verify",
         description = "Jsut an simply placeholder since you reached the end or the feed isn't updated yet.",
         author = "Recap Time Bot",
-        guid = Guid("https://gitlab.com/RecapTime/verify"),
+        guid = Guid("https://github.com/RecapTime/verify"),
         # When updating published date, remember thee format YYYY, MM, DD, HH, MM and use UTC timezone
         # as much as possible.
         pubDate = datetime(2021, 9, 12, 11, 45, tzinfo=timezone.utc))
@@ -36,7 +36,7 @@ initialEntry = Item(
 
 feed = Feed(
         title = "Historical Manifest Changes for verify.rtapp.io registry",
-        link = "https://gitlab.com/RecapTime/verify",
+        link = "https://github.com/RecapTime/verify",
         description = "Currently manually-maintained Atom feed for every signle manifest changes in @rtapp-verify/list-manifests Yarn workspace.",
         language = "en-US",
         lastBuildDate = datetime.now(timezone.utc),
