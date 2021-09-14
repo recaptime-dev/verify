@@ -21,60 +21,24 @@ The following is a set of guidelines for contributing to the `rtapp-verify` proj
 
 <!-- tocstop -->
 
+## General Guidelines for Development
+
+* We use Yarn as our package manager here, with strict Plug 'n Play mode by default. Do not make changes to the Yarn configuration file (`.yarnrc.yml`). Don't use the regular npm or even pnpm here as mixing package managers will only cause chaos.
+* Don't touch our DangerJS files in the `danger` directory. Unless you know what you're doing, any breaking changes may break future PRs so please test Dangerfile changes on your own first.
+* Add or update tests as possible. Currently, code tests are not yet implemented here but it will somewhat in the future.
+
 ## Requirements for Commit Messages
 
-* By commiting your work and sending an merge request to the
-project, your work will be licensed under
-* Your commit message should be looks like this format below.
-If you use `yarn commit`, you don't need to memorize the format
-below, because Commitizen CLI will handle it for you. You just
-stage your changes, run the wizard and push.
-
-```gitmessage
-# Ensure the summary only have 80 characters or GitHub will cut it for mobile web users, unless visited the file/repo history.
-type(scope): TLDR form of your commit message goes here
-# where type is an type that's supported from the conventional-changelog plugin for Commitizen CLI
-# see https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#typ for the full list of these supported types from Angular's
-# contributing guidelines.
-# in case of reverting an commit, use the revert type.
-
-Your longer message should be goes here. Remember that comments start with
-hash in at first character of the line will be ignored by Git. Also remember to
-keep your characters below 100 PER LINE.
-
-# reference to an issue in GitHub
-Fixes https://github.com/RecapTime/verify/issues/2
-# or in GitLab
-Fixes https://gitlab.com/MadeByThePinsHub/RecapTime/verify/issues/3
-
-# optional links to the comment in an PR where the reviewer
-# requests you to change something
-Reference: https://github.com/benawad/dogehouse/pull/2035/commits/ee06dd45405c23e91b2232e5a4a6daf2f2052b3f
-
-# don't forget to sign-off your commit to be compliant with
-# DCO checks we're implementing. Org members in GitHub
-# can skip this, only if they do GPG signing.
-# PS: No email addresses were spammed in writing of this example
-# Git commit message.
-# Also sign-offs are not inclided when ran the Commitizen CLI
-# to commit your changes to the history, yet.
-Signed-off-by: Gildedguy (Michael Moy) <lets-assume-its-mikedmoy-here@kensored-domain.io>
-# also add coauthors to thank them (e.g. if you applied their
-# patches from email)
-Co-authored-by: oxob3000 (Johannes Andersson) <lets-assume-its-boxob@kensored-domain.io>
-```
-
+* By commiting your work and sending an merge request to the project, your work will be licensed under the same license as this repo.
+* We use Conventional Changelog as our format for the Git messages. To make your life easier, please stage your work into the staging area and run `yarn commit` (or `yarn wizard:commit` if you're not on the root directory) and follow prompts.
 * Even without signing-off your commits, we recommend to PGP sign your commits to ensure that you REALLY commit your work and has the right to submit so.
 * While DCO checks may fail and block us from merging it, we may opt to manual merging through the command line if needed. PLEASE SIGN OFF YOUR COMMITS AND IF NEEDED, PLEASE REBASE WITH `signoff` FLAG AND FORCE PUSH.
 
 ## Adding new entries to the list
 
-Verifying an content creator/publisher starts with [filing an new issue in either GitHub][gh-new-issue]
-or [GitLab][gl-new-issue] and pick an template that suits your case as
-per [the process on the wiki][process-docs]. Once filed, our robots
-will check if there's existing data and status if an PR exists.
-You can either continue reading this section to send an PR yourself
-or let us (or the community) handle the rest
+Verifying an content creator/publisher starts with [filing an new issue in either GitHub][gh-new-issue]or [GitLab][gl-new-issue] and pick an template that suits your case as per [the process on the wiki][process-docs]. Once filed, our robots will check if there's existing data and status if an PR exists. You can either continue reading this section to send an PR yourself or let us (or the community) handle the rest.
+
+The scripts described here currently doesn't exist today, but maybe in an constant future as development continues, but if you wish, we welcome external contributions for these.
 
 [gl-new-issue]: https://gitlab.com/MadeByThePinsHub/RecapTime/verify/issues/new
 [gh-new-issue]: https://github.com/RecapTime/verify/issues/new

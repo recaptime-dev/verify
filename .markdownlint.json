@@ -2,5 +2,7 @@
     "first-line-heading": false,
     "ul-indent": false,
     "line-length": false,
-    "ul-style": false
+    "ul-style": false,
+    "no-inline-html": false,
+    "code-fence-style": true
 }
