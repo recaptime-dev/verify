@@ -16,7 +16,9 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
     "editor.autoIndent": "advanced",
-    "gitlens.codeLens.scopes": ["document"],
+    "gitlens.codeLens.scopes": [
+      "document"
+    ],
     "editor.quickSuggestions": {
       "other": true,
       "comments": false,
@@ -27,5 +29,7 @@
     "**/.yarn": true,
     "**/.pnp.*": true
   },
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.js"
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
