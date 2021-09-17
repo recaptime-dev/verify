@@ -58,7 +58,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lodash.first", "npm:3.0.0"],
             ["lodash.includes", "npm:4.3.0"],
             ["markdown-toc", "npm:1.2.0"],
-            ["prettier", "npm:2.4.0"],
+            ["prettier", "npm:2.4.1"],
             ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"],
             ["yaml-schema-validator", "npm:1.2.3"]
           ],
@@ -1737,7 +1737,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@rtapp-verify/rss", "workspace:utils/rss"],
             ["@prettier/plugin-xml", "npm:1.0.2"],
-            ["prettier", "npm:2.4.0"]
+            ["prettier", "npm:2.4.1"]
           ],
           "linkType": "SOFT",
         }]
@@ -9230,6 +9230,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.4.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:2.4.1", {
+          "packageLocation": "./.yarn/cache/prettier-npm-2.4.1-623aac91ee-cc6830588b.zip/node_modules/prettier/",
+          "packageDependencies": [
+            ["prettier", "npm:2.4.1"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["pretty-bytes", [
@@ -9951,7 +9958,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lodash.first", "npm:3.0.0"],
             ["lodash.includes", "npm:4.3.0"],
             ["markdown-toc", "npm:1.2.0"],
-            ["prettier", "npm:2.4.0"],
+            ["prettier", "npm:2.4.1"],
             ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"],
             ["yaml-schema-validator", "npm:1.2.3"]
           ],

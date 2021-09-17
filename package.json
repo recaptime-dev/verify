@@ -2,7 +2,7 @@
   "name": "rtapp-verify",
   "decription": "The monorepo package for Verification Process Endpoint stuff by Recap Time squad.",
   "engines": {
-    "node": "12.x"
+    "node": " >= 12.13.0"
   },
   "bugs": {
     "url": "https://github.com/RecapTime/verify/issues/new/choose"
@@ -16,7 +16,7 @@
     "danger-plugin-yarn": "^1.3.2",
     "lodash.first": "^3.0.0",
     "lodash.includes": "^4.3.0",
-    "prettier": "^2.4.0",
+    "prettier": "^2.4.1",
     "typescript": "^4.4.3"
   },
   "scripts": {
