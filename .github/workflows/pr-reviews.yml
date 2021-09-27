@@ -33,7 +33,7 @@ jobs:
 
       # TODO: Upgrade to 16.x when it reaches the Active LTS status.
       - name: Use Node.js 14.x
-        uses: actions/setup-node@v2.4.0
+        uses: actions/setup-node@v2.4.1
         with:
           node-version: '14'
 
