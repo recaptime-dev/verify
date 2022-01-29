@@ -1,4 +1,6 @@
 # Verification process endpoint + Verify API
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRecapTime%2Fverify.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FRecapTime%2Fverify?ref=badge_shield)
+
 
 **Before you continue**: We don't promise that you'll get an verified badge for your accounts elsewhere. We just confirm the authencity of an content creator or publisher through this API.
 
@@ -38,3 +40,7 @@ The Pins Team and its project maintainers of this repoistory will only collect p
 Twitter handle, real name (if applicable) and domain/website for purposes of verifying the authenicity of an content creator.
 
 Any private information collected during the process will be kept private in accordrance with the privacy policy found at <https://legal.madebythepins.tk/privacy-policy>. For inquiries regarding data collection or if you want to delete the data we're colleced, email <privacy@madebythepins.tk> or create a new issue on [legal website repo](https://github.com/MadeByThePinsHub/LegalCodeSource/issues/new)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRecapTime%2Fverify.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FRecapTime%2Fverify?ref=badge_large)
