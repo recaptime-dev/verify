@@ -6,7 +6,7 @@ labels:
   - "request-forms:new-entries"
   - "enhancement"
 assignees:
-  - ajhalili2006
+  - RecapTimeDquad
   - ThePinsTeam
 
 # The main form goes here! For maintainers and contributors who wish to improve this form should consult
@@ -25,8 +25,8 @@ body:
   - type: checkboxes
     id: existing-issues
     attributes:
-      label: Is there an existing issue for this request?
-      description: Please search to see if an issue already exists for the request you're about to submit. If you found one but closed due to any reasons, please read our maintainers' feedback before you submit a new one.
+      label: Is there an existing issue for this request on GitLab?
+      description: Please search to see if an issue already exists for the request you're about to submit. If you found one but closed due to any reasons, please read our maintainers' feedback before you submit a new one. If you found an existing open issues, feel free to send an merge request on GitLab.
       options:
       - label: I have searched the existing issues
         required: true
@@ -47,6 +47,7 @@ body:
         For content creators, its their screen name. For communities and publishers (book publishers, music labels, any entities that publish stuff on BEHALF of content creators), it usually their public company or community name. It possible that an community has it own legal entity in terms of finanical and copyright stuff (for example the KDE Community has KDE e.V. for finanical and copyright matters, but only the KDE Community will counted here since we don't support any other types of companies/entities other than content publishers/licensors yet)
 
         Remember to place the placeholder `Entry Name Here` with the value of this field before you continue filling this form up.
+      placeholder: Entry Name Here
     validations:
       required: true
   - type: input
@@ -61,16 +62,13 @@ body:
       description: |
         **Glossary for new contributors**:
 
-        * Content Creators are music artists, OSS developers and maintainers, and simply put any public figure with politicans and criminals excluded.
-        * Content Publishing Companies are music labels, book publishing houses, any entities that publishes stuff on behalf of Content Creators except entities that handle the copyright/trademark stuff on behalf of Content Creators
-        * Communities are pretty self-explainatory, right?
-
-        If the submission type you looking isn't in the selection, choose `None of above` and our maintainers will try to pick the best submission type for you.
+        * Content Creator are music artists, OSS developers and maintainers, and simply put any public figure that are either politicans and criminals are excluded.
+        * Entity are organizations or companies with atleast 2 or more people. Most companies and non-profits usually fall here.
+        * Communities are pretty self-explainatory, right? They're either built by either an Content Creator or Entity.
       options:
         - Content Creator
-        - Content Publishing Company
-        - Communities
-        - None of above
+        - Community
+        - Entity
     validations:
       required: true
   - type: textarea
@@ -109,9 +107,6 @@ body:
         - label: Debian (<https://debian.org>)
         # gitlab.com/active-maintainer, note that we'll check if he/she is an GitLab team member or not.
         - label: GitLab (<https://gitlab.com/gitlab-org/gitlab)
-        # hydralite.io/active-maintainer
-        - label: Hydralite (<https://github.com/hydralite/hydralite>)
-        # vscode.dev/active-maintainer
         - label: VS Code (<https://github.com/microsoft/vscode>)
         - label: Other open source projects (list down in the comments field below)
   ## Annonations - START ##
@@ -121,17 +116,33 @@ body:
       label: Any comments our maintainers want to know?
       description: Please only note any extra information you might want to submit for this entry. Check the docs on what to place in this field.
       value: |
-        <!-- Please remove everything by hitting Ctrl+A and then Backspace while the cursor is within this textarea. -->
+        <!--
+
+        Please remove everything by hitting Ctrl+A and then Backspace while the cursor is within this textarea.
+        Check the documentation for details about this section.
+
+        -->
         #### OSS Projects with Active Maintainership Status
+
+        When linking, please use either the project's homepage, documentation site or the source code itself.
 
         * Project name - <https://example.org>
 
         ### OSS Projects with Past Maintership Status
 
+        When linking, please use either the project's homepage, documentation site or the source code itself.
+
         * Project name - <https://example.org>
+
+        ## Discord Account Association
+
+        Our Discord bot should generate one of these metadata below for validation purposes only.
+
+        * Account ID: 1234567890
+        * Server ID where /verify is triggered: 1234567890
   - type: markdown
     attributes:
       value: |
         ---
         
-        By submitting this form, you agree to [The Pins Team's Community Code of Conduct](https://github.com/MadeByThePinsHub/policies/blob/trunk/CODE_OF_CONDUCT.md) and our [Entry Submission Guidelines](meta/SUBMISSION_GUIDELINES.md). You also certify that all information you submit is accurate and true by the time you submit this issue.
+        By submitting this form, you agree to [Recap Time Community Code of Conduct](https://github.com/MadeByThePinsHub/policies/blob/trunk/CODE_OF_CONDUCT.md) and our [Entry Submission Guidelines](meta/SUBMISSION_GUIDELINES.md). You also certify that all information you submit is accurate and true by the time you submit this issue.
