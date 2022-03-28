@@ -12,7 +12,7 @@
     "prettier:atom-feeds": "prettier --write ./out/**.xml"
   },
   "devDependencies": {
-    "@prettier/plugin-xml": "^1.0.2",
+    "@prettier/plugin-xml": "^2.0.1",
     "prettier": "^2.4.1"
   }
 }
