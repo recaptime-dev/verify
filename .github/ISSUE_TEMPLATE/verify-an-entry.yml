@@ -6,8 +6,8 @@ labels:
   - "request-forms:new-entries"
   - "enhancement"
 assignees:
-  - RecapTimeDquad
-  - ThePinsTeam
+  - RecapTimeSquad
+  - ajhalili2006
 
 # The main form goes here! For maintainers and contributors who wish to improve this form should consult
 # our YAML schema JSON file at https://github.com/RecapTime/verify/blob/main/.vscode/schemas/custom-yaml.json and
@@ -124,13 +124,13 @@ body:
         -->
         #### OSS Projects with Active Maintainership Status
 
-        When linking, please use either the project's homepage, documentation site or the source code itself.
+        When linking, please use either the project's homepage, documentation site or the source code itself. List only projects where they are currently have maintainer status, unless otherwise stated.
 
         * Project name - <https://example.org>
 
         ### OSS Projects with Past Maintership Status
 
-        When linking, please use either the project's homepage, documentation site or the source code itself.
+        When linking, please use either the project's homepage, documentation site or the source code itself. List only projects where they are former maintainers, unless otherwise stated.
 
         * Project name - <https://example.org>
 
