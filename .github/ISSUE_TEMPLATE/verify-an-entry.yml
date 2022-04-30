@@ -90,26 +90,13 @@ body:
       value: |
         ## Entry Annonations
 
-        This section is where all currently supported and future annonations where you can fill up goes here. They are always optional and you can skip them altogether.
-  - type: checkboxes
-    id: oss-maintainership-status
+        This section is where all currently supported and future annonations where you can fill up goes here. They are always optional and you can
+        skip them altogether.
+  - tyype: input
+    id: otherUsernames
     attributes:
-      label: Open-source Maintainership Status
-      description: |
-        **ONLY APPLIES TO CONTENT CREATORS, SKIP IF ITS AN COMPANY OF ANY SORT OR COMMUNITY!**
-
-        Check any boxes where this entry is actively maintains in the following open-source projects. Any past projects where this developer maintains should be noted in the comments field below.
-      
-        Can't found it? Pick `Other open source projects` and provide us the open-source project name, link to website/repository in the comments section of this form for details. If this entry doesn't maintain any OSS projects, please do not tick anything.
-      # Alphabettical order, please!
-      options:
-        # debian.org/active-distro-maintainer
-        - label: Debian (<https://debian.org>)
-        # gitlab.com/active-maintainer, note that we'll check if he/she is an GitLab team member or not.
-        - label: GitLab (<https://gitlab.com/gitlab-org/gitlab)
-        - label: VS Code (<https://github.com/microsoft/vscode>)
-        - label: Other open source projects (list down in the comments field below)
-  ## Annonations - START ##
+      labels: Any additional usernames you use elsewhere?
+      description: Please list them below, separated by commas, so we can setup reidrects on the API.
   - type: textarea
     id: comments
     attributes:
