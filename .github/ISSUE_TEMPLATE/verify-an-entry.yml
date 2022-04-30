@@ -92,11 +92,11 @@ body:
 
         This section is where all currently supported and future annonations where you can fill up goes here. They are always optional and you can
         skip them altogether.
-  - tyype: input
+  - type: input
     id: otherUsernames
     attributes:
       labels: Any additional usernames you use elsewhere?
-      description: Please list them below, separated by commas, so we can setup reidrects on the API.
+      description: Please list them below, separated by commas, so we can setup reidrects on the API and placeholders on YAML dumps.
   - type: textarea
     id: comments
     attributes:
