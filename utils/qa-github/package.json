@@ -16,7 +16,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "probot": "^11.4.1",
+    "probot": "^12.2.8",
     "probot-commands": "^1.1.0",
     "probot-metadata": "^2.0.1"
   },
