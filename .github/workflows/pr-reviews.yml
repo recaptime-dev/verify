@@ -21,7 +21,7 @@ jobs:
     name: Automated PR Reviews
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3.0.2
         with:
           # Just don't cache the cursed $GITHUB_TOKEN
           persist-credentials: false
