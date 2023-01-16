@@ -1722,7 +1722,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@rtapp-verify/qa-bot", "workspace:utils/qa-github"],
             ["jest", "virtual:ceeccec555159abae5d1d436eb86cdf7f2e5382a1876b87d8ea120773f208c4a5ff1f87e62ee69e29e8d41a1f5b730a633a779c8d0e28bbbb5766e5cc6993945#npm:27.2.0"],
-            ["nock", "npm:13.1.3"],
+            ["nock", "npm:13.3.0"],
             ["probot", "npm:11.4.1"],
             ["probot-commands", "npm:1.1.0"],
             ["probot-metadata", "virtual:ceeccec555159abae5d1d436eb86cdf7f2e5382a1876b87d8ea120773f208c4a5ff1f87e62ee69e29e8d41a1f5b730a633a779c8d0e28bbbb5766e5cc6993945#npm:2.0.1"],
@@ -8370,13 +8370,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["nock", [
-        ["npm:13.1.3", {
-          "packageLocation": "./.yarn/cache/nock-npm-13.1.3-d88740d23e-9e53a1edaa.zip/node_modules/nock/",
+        ["npm:13.3.0", {
+          "packageLocation": "./.yarn/cache/nock-npm-13.3.0-48c93e5ec9-118d04e95a.zip/node_modules/nock/",
           "packageDependencies": [
-            ["nock", "npm:13.1.3"],
+            ["nock", "npm:13.3.0"],
             ["debug", "virtual:c39e093dc4448288c155d8de771c4d63c8d7f6f33302ae59f4f90b827005fa9b60d5c7b07b2a510df640dfd4885a0a92e76915453351d845e3ce0b3af5a1aecf#npm:4.3.2"],
             ["json-stringify-safe", "npm:5.0.1"],
-            ["lodash.set", "npm:4.3.2"],
+            ["lodash", "npm:4.17.21"],
             ["propagate", "npm:2.0.1"]
           ],
           "linkType": "HARD",
